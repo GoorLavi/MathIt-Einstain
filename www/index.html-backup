@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="simplex/css/simplex.min.css" class="uib-framework-theme">
+    <meta charset="UTF-8">
+    <title>Blank App Designer Packaged Web App Project Template</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+
+    <style>
+      @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+        @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+    </style>
+
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+    <script src="cordova.js" id="xdkJScordova_"></script>
+
+    <script src="js/app.js"></script>
+    <script src="Script.js"></script>
+    <script src="js/init-app.js"></script>
+    <!-- for your init code, see README and file comments for details -->
+    <script src="xdk/init-dev.js"></script>
+    <!-- normalizes device and document ready events, see file for details -->
+    <script type="application/javascript" src="lib/jquery.min.js"></script>
+    <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
+    <script type="application/javascript" src="js/index_user_scripts.js"></script>
+  </head>
+
+  <body>
+    <div class="upage" id="mainpage">
+      <div class="upage-outer">
+        <div class="uib-header header-bg container-group inner-element uib_w_1 header-size" data-uib="layout/header" data-ver="0">
+          <h2></h2>
+          <div class="widget-container wrapping-col single-centered">
+            <div class="uib-grid widget uib_w_2 grid-text grid-height d-margins" data-uib="layout/grid" data-ver="0">
+              <div class="uib-grid-row">
+                <div class="uib-grid-cell widget-container"></div>
+                <div class="uib-grid-cell widget-container"></div>
+              </div>
+            </div>
+
+          </div>
+          <div class="widget-container content-area horiz-area wrapping-col left">
+            <div class="widget uib_w_3 header-left-margin" data-uib="media/text" data-ver="0" id="lvlwant">
+              <div class="widget-container left-receptacle"></div>
+              <div class="widget-container right-receptacle"></div>
+              <div>
+                <p>level 1</p>
+              </div>
+            </div>
+          </div>
+          <div class="widget-container content-area horiz-area wrapping-col right">
+            <div class="widget uib_w_6 margin-right-header" data-uib="media/text" data-ver="0">
+              <div class="widget-container left-receptacle"></div>
+              <div class="widget-container right-receptacle"></div>
+              <div>
+                <p id="wantednum">11</p>
+              </div>
+            </div>
+            <div class="widget uib_w_5" data-uib="media/text" data-ver="0">
+              <div class="widget-container left-receptacle"></div>
+              <div class="widget-container right-receptacle"></div>
+              <div>
+                <p>all you need is</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="upage-content ac0 content-area vertical-col" id="page_91_23">
+          <div class="progress full-width-widget widget uib_w_7 progress-bar-margins active progress-striped" data-uib="twitter%20bootstrap/progress_bar" data-ver="1">
+            <div id="demo" class="progress-bar progress-bar-success progress-bar-warning progress-bar-info progress-bar-danger" style="width: 0%;"></div>
+          </div>
+          <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+
+            <div class="col uib_col_5 col-0_7-12 marginuranswer" data-uib="layout/col" data-ver="0">
+              <div class="widget-container content-area vertical-col">
+
+                <div class="widget uib_w_8 ur-answer-marg" data-uib="media/text" data-ver="0">
+                  <div class="widget-container left-receptacle"></div>
+                  <div class="widget-container right-receptacle"></div>
+                  <div>
+                    <p id="show">your answer</p>
+                  </div>
+                </div><span class="uib_shim"></span>
+              </div>
+            </div>
+            <div class="col uib_col_1 col-0_5-12" data-uib="layout/col" data-ver="0">
+              <div class="widget-container content-area vertical-col">
+
+                <span class="uib_shim"></span>
+                <div class="widget uib_w_9 d-margins" data-uib="media/text" data-ver="0">
+                  <div class="widget-container left-receptacle"></div>
+                  <div class="widget-container right-receptacle">
+                    <div class="widget uib_w_10 moves-left-marg" data-uib="media/text" data-ver="0">
+                      <div class="widget-container left-receptacle"></div>
+                      <div class="widget-container right-receptacle"></div>
+                      <div>
+                        <p id="movesnum">3</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p>moves left :</p>
+                  </div>
+                </div>
+              </div>
+            </div><span class="uib_shim"></span>
+          </div>
+
+          <div class="btn-group uib-bs-flex widget uib_w_13 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+            <button class="btn widget uib_w_14 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" onclick=" calc(0);">1</button>
+            <button class="btn widget uib_w_15 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" onclick=" calc(1);">2</button>
+            <button class="btn widget uib_w_16 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">3</button>
+          </div>
+          <div class="btn-group uib-bs-flex widget uib_w_17 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+            <button class="btn widget uib_w_18 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">4</button>
+            <button class="btn widget uib_w_19 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">5</button>
+            <button class="btn widget uib_w_20 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">6</button>
+          </div>
+          <div class="btn-group uib-bs-flex widget uib_w_21 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+            <button class="btn widget uib_w_22 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">7</button>
+            <button class="btn widget uib_w_23 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">8</button>
+            <button class="btn widget uib_w_24 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">9</button>
+          </div>
+          <div class="btn-group uib-bs-flex widget uib_w_25 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+            <button class="btn widget uib_w_26 button-txt btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1">0</button>
+            <button class="btn widget uib_w_27 marks-button-width btn-sm btn-default button-txt" data-uib="twitter%20bootstrap/button" data-ver="1">.</button>
+          </div>
+          <div class="btn-group uib-bs-flex widget uib_w_29 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+            <button class="btn widget uib_w_30 btn-default button-txt round-butoo" data-uib="twitter%20bootstrap/button" data-ver="1">+</button>
+            <button class="btn widget uib_w_31 round-butoo btn-sm btn-default arese" data-uib="twitter%20bootstrap/button" data-ver="1">-</button>
+            <button class="btn widget uib_w_32 btn-default button-txt round-butoo" data-uib="twitter%20bootstrap/button" data-ver="1">/</button>
+          </div>
+          <div class="btn-group uib-bs-flex widget uib_w_33 d-margins" data-uib="twitter%20bootstrap/button_group" data-ver="1">
+            <button class="btn widget uib_w_34 btn-default button-txt round-butoo" data-uib="twitter%20bootstrap/button" data-ver="1">x^2</button>
+            <button class="btn widget uib_w_35 btn-default button-txt round-butoo" data-uib="twitter%20bootstrap/button" data-ver="1">X</button>
+            <button class="btn widget uib_w_36 btn-default button-txt round-butoo" data-uib="twitter%20bootstrap/button" data-ver="1">x^</button>
+          </div>
+
+          <div class="grid grid-pad urow uib_row_4 row-height-4" data-uib="layout/row" data-ver="0">
+            <div class="col uib_col_10 col-0_3-12 columargin" data-uib="layout/col" data-ver="0">
+              <div class="widget-container content-area vertical-col">
+
+                <div class="widget uib_w_37 lifes-width" data-uib="media/text" data-ver="0">
+                  <div class="widget-container left-receptacle"></div>
+                  <div class="widget-container right-receptacle">
+                    <div class="widget uib_w_38" data-uib="media/text" data-ver="0" id="lifenum">
+                      <div class="widget-container left-receptacle"></div>
+                      <div class="widget-container right-receptacle"></div>
+                      <div>
+                        <p>3</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p>lifes :</p>
+                  </div>
+                </div><span class="uib_shim"></span>
+              </div>
+            </div>
+            <div class="col uib_col_11 col-0_9-12" data-uib="layout/col" data-ver="0">
+              <div class="widget-container content-area vertical-col">
+
+                <button class="btn widget uib_w_39 d-margins btn-sm btn-info" data-uib="twitter%20bootstrap/button" data-ver="1" id="again">Try again<i class="glyphicon glyphicon-repeat button-icon-right" data-position="right"></i>
+                </button><span class="uib_shim"></span>
+              </div>
+            </div>
+            <span class="uib_shim"></span>
+          </div>
+          <button class="btn widget uib_w_40 btn-lg btn-primary" data-uib="twitter%20bootstrap/button" data-ver="1" id="nxt">let's go to the next level <i class="glyphicon glyphicon-thumbs-up button-icon-right" data-position="right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
