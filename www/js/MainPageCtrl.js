@@ -127,8 +127,9 @@ $scope.MovesLeftFunc = function(CurrentNumber)
 		}
 	else if(CurrentMovesNumber == 0 || (CurrentNumber == 'x'&&CurrentMovesNumber<2))
 	 {
-		 document.getElementById("tryagains").className = "Fade btn widget uib_w_39 buttonss btn-danger";
-		 document.getElementById("show").className = " ShakeResult ";
+		 $('#tryagains').addClass('Fade');
+
+		 $('#show').addClass('ShakeResult');
 		 navigator.vibrate(300);
 		 return false;
           }
@@ -150,8 +151,9 @@ $scope.MovesLeftFunc = function(CurrentNumber)
 
 		$scope.MovesLeft = CurrentMovesNumber;
 
-		 document.getElementById("tryagains").className = "btn widget uib_w_39 buttonss btn-danger";
-		 document.getElementById("show").className = "";
+		$('#show').removeClass('ShakeResult');
+		$('#tryagains').removeClass('Fade');
+
 
 		return true;
 	}
@@ -346,14 +348,13 @@ $scope.ClearData = function(TakeAlife)
 
 	InitProgressBar();
 
-	$('show').text = "your answer";
+	$scope.Answer = "your answer";
 
 
 	if($('#tryagains').hasClass('Fade')){
 	$('#tryagains').removeClass('Fade');
 	}
 
-	$scope.Answer = "";
 
 
 
