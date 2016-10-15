@@ -214,10 +214,6 @@ button.IconsHover:hover
     -webkit-transform: opacity:1;
     transform: opacity: 0.2;
   }
-  40% {
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
 
 }
 
