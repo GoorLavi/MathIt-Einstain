@@ -559,7 +559,9 @@ function VisibleNecessaryObjects()
 	$('#lifestxt')[0].style.visibility = "visible";
 	$("#MovesNumber")[0].style.visibility = "visible";
 
-	$('.inputButton').disabled = false;
+	$('.inputButton').each(function(){
+		this.disabled = false
+	});
 
 
 	 $("#WantedNum").removeClass('swashOut');
@@ -591,7 +593,10 @@ function nextLevelFeatures()
 
 
 
-	$('.inputButton').disabled = true;
+	$('.inputButton').each(function(){
+		this.disabled = true
+	});
+
 
     if(ThereIsConnection() && $scope.PlayerLvl % 5 == 0)
 	{

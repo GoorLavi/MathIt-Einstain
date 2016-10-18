@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "appDesigner",
       "projectGuid": "62152977-bd86-4b37-a870-54975286377d",
-      "lastModifiedDate": 1476182629912,
+      "lastModifiedDate": 1476580544061,
       "creationDate": 1440003936299
     },
     "XDK-app-designer": "true",
@@ -56,7 +56,7 @@
         "selectedState": "Included",
         "checksum": "1af74557",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "permissions": {},
         "description": "Cordova Notification Plugin",
         "data": {},
@@ -74,7 +74,7 @@
         "selectedState": "Included",
         "checksum": "b1faf438",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "cordovaVersion": ">=3.0.0",
         "permissions": {
           "android:name": [
@@ -117,7 +117,7 @@
         "selectedState": "Included",
         "checksum": "60874f6c",
         "dependsOn": [],
-        "topLevel": true,
+        "topLevel": false,
         "cordovaVersion": ">=3.0.0",
         "permissions": {},
         "description": "Plugin for Cordova (or PhoneGap) 3.0+ to enable true full screen on Android devices using lean and immersive modes",
@@ -140,6 +140,29 @@
         "topLevel": true,
         "permissions": {},
         "description": "Cordova Device Plugin",
+        "data": {},
+        "dependedBy": []
+      },
+      {
+        "id": "cordova-plugin-network-information",
+        "name": "Network Information",
+        "version": "1.1.0",
+        "originType": "cordova.io",
+        "origin": "cordova-plugin-network-information",
+        "gitref": "",
+        "paramvals": {},
+        "sourceLocation": "plugins/cordova-plugin-network-information",
+        "selectedState": "Included",
+        "checksum": "4be25d7c",
+        "dependsOn": [],
+        "topLevel": true,
+        "cordovaVersion": ">=3.0.0",
+        "permissions": {
+          "android:name": [
+            "android.permission.ACCESS_NETWORK_STATE"
+          ]
+        },
+        "description": "Cordova Network Information Plugin",
         "data": {},
         "dependedBy": []
       }
