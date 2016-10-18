@@ -91,6 +91,7 @@ input, textarea
 
 }
 
+
 button
 {
     outline: none !important;
@@ -215,6 +216,27 @@ button.IconsHover:hover
     transform: opacity: 0.2;
   }
 
+}
+
+
+.nextLvlStartBounce
+{
+    position: fixed !important;
+	top: 0px;
+
+
+    -webkit-animation:nextLvlStartBounce 0.8s;
+
+    -webkit-animation-iteration-count:1;
+}
+
+@-webkit-keyframes nextLvlStartBounce
+{
+
+	from {position: fixed !important;
+	top: 0px;}
+	to {position: fixed !important;
+	top: 88%}
 }
 
 .TutorialPart0

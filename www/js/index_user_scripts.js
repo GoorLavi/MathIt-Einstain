@@ -6,36 +6,9 @@
  /*
    hook up event handlers
  */
+
  function register_event_handlers()
  {
-
-
-
-
-
-        /* button  X^ */
-    $(document).on("click", ".uib_w_34", function(evt)
-    {
-
-		//calc('XX');
-    });
-
-        /* button  X^2 */
-    $(document).on("click", ".uib_w_30", function(evt)
-    {
-   // calc('X');
-	});
-
-        /* button  9 */
-
-
-        /* button  9 */
-    $(document).on("click", ".uib_w_23", function(evt)
-    {
-        /* your code goes here */
-    });
-
-        /* button  #right-bar */
 
 
         /* button  .uib_w_43 */
@@ -57,7 +30,7 @@
          /* Other options: .modal("show")  .modal("hide")  .modal("toggle")
          See full API here: http://getbootstrap.com/javascript/#modals
             */
-                    uib_sb.close_all_sidebars();
+        uib_sb.close_all_sidebars();
 
         $(".uib_w_47").modal("toggle");
     });
@@ -77,10 +50,12 @@
         /* button  #startover */
     $(document).on("click", "#startover", function(evt)
     {
-        start();
+        //start();
+
+        ButtonsState();
+
             uib_sb.close_all_sidebars();
-       // var newwindow = window.open('popup.aspx','Color Popup','height=400,width=200');
-//newwindow.document.body.style.background = "#000";
+
          uib_sb.toggle_sidebar($(".uib_w_42"));
     });
 
@@ -90,15 +65,9 @@
         /* button  #buttom-bar */
     $(document).on("click", "#buttom-bar", function(evt)
     {
-         /*global uib_sb */
-         /* Other possible functions are:
-           uib_sb.open_sidebar($sb)
-           uib_sb.close_sidebar($sb)
-           uib_sb.toggle_sidebar($sb)
-            uib_sb.close_all_sidebars()
-          See js/sidebar.js for the full sidebar API */
-
+	ButtonsState();
          uib_sb.toggle_sidebar($(".uib_w_55"));
+
     });
 
         /* button  #Toturial */
@@ -107,7 +76,7 @@
          /* Other options: .modal("show")  .modal("hide")  .modal("toggle")
          See full API here: http://getbootstrap.com/javascript/#modals
             */
-
+        ButtonsState();
 	uib_sb.toggle_sidebar($(".uib_w_55"));
          $("#FirstTutorial").modal("toggle");
     });
@@ -162,4 +131,6 @@
 
     }
  document.addEventListener("app.Ready", register_event_handlers, false);
+
+
 })();

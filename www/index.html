@@ -17,9 +17,10 @@
     </style>
 
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/magic.css">
     <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
 
-<!--    <script src="cordova.js" id="xdkJScordova_"></script>-->
+    <script src="cordova.js" id="xdkJScordova_"></script>
 
 	    <script type="application/javascript" src="lib/angular-1.5.8/angular.js"></script>
 	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
@@ -29,8 +30,13 @@
     <script src="js/GameManager.js"></script>
     <script src="Script.js"></script>
     <script src="js/init-app.js"></script>
-    <script src="js/NextLVL.js"></script>
     <script src="js/StarterTutorial.js"></script>
+
+
+    <script src="js/admob1.js"></script>
+    <script src="js/admob2.js"></script>
+    <script src="js/admob3.js"></script>
+    <script src="js/AdBanner.js"></script>
 
 
     <!-- for your init code, see README and file comments for details -->
@@ -64,7 +70,7 @@
 	       <p id="PlayerLevel" >level {{PlayerLvl}}</p>
 
 
-	   <button id="OptionsButton" id="buttom-bar" style="font-size:5vh;"><i class="el el-cog" data-position="icon only"></i>
+	   <button id="OptionsButton" style="font-size:5vh;"><i class="el el-cog" data-position="icon only"></i>
 	   </button>
 	  </div>
 
@@ -78,12 +84,14 @@
 	</div>
 
 	   <div id="progressBar" class="progress full-width-widget widget uib_w_36 active progress-striped nuthing" data-uib="twitter%20bootstrap/progress_bar" data-ver="1">
-		<div id="demo" class="progress-bar progress-bar-info progress-bar-success" style="width: 0%;"></div>
-	       </div>
+		<div id="demo" class="progress-bar progress-bar-info progress-bar-success" style="width: 0%;">
+		   	       {{ProgressBarText}}
+		   </div>
+		 </div>
 
 	   <div id="MovesAndAnswerContainer">
 			     <div class="mdWidth floatLeft">
-				<p id="show" class="orangeTextTheme bolderWight largeFont">{{Answer}}</p>
+				<p id="show" class="orangeTextTheme bolderWight largeFont">{{FullAnswer}}</p>
 			     </div>
 			     <div class="mdWidth floatRight">
 				<p id="MovesLeftText" class="blueTextTheme bolderWight largeFont">moves left</p>
@@ -147,7 +155,7 @@
 		        </div>
 	        </div>
 
-		<button id="nxt" ng-click="NextLVLmain(1);" class="bounce arrow"   data-ver="1"><i class="el el-asl button-icon-left" data-position="left"></i>Next Level</button>
+		<button id="nxt" ng-click="NextLVLmain();" class="bounce arrow"   data-ver="1"><i class="el el-asl button-icon-left" data-position="left"></i>Next Level</button>
 
 	    </div>
     </div>
@@ -157,10 +165,8 @@
 
 
 
-    <div class="outer-element uib_w_55 uib_crossbar botbar fixed bar-bg thumb-bg bar-gutter" data-uib="layout/bottom_crossbar" data-ver="1" data-anim="{'style':'overlap', 'v':200, 'side':'bottom', 'dur':200, 'io':false}" style="padding-top:2vh;">
-      <div class="sidebar-content content-area vertical-col">
+    <div id="BottomSideB" class="outer-element uib_w_55 uib_crossbar botbar fixed bar-bg thumb-bg bar-gutter" data-uib="layout/bottom_crossbar" data-ver="1" data-anim="{'style':'overlap', 'v':400, 'side':'bottom', 'dur':100, 'io':false}">
 
-        <div class="tarea widget uib_w_59 d-margins" data-uib="media/text" data-ver="0" name="uib_w_59">
           <div class="widget-container center-receptacle containerHighRecord">
 
             <p style="color:#0079f2; font-size:4vh;">Highest Record</p>
@@ -176,22 +182,22 @@
             </div>
           </div>
 
-            <button ng-click="StartOver();" class="btn widget d-margins btn-default startOver" data-uib="twitter%20bootstrap/button" data-ver="1" id="startover">Start over <i class="glyphicon glyphicon-retweet button-icon-right" data-position="right"></i>
+	        <div class="sidebarBcontainer">
+
+            <button class="btn widget d-margins btn-default startOver" data-uib="twitter%20bootstrap/button" data-ver="1" id="startover">Start over <i class="glyphicon glyphicon-retweet button-icon-right" data-position="right"></i>
             </button>
 <div class="widget-container Align-center"
      id="BottomBarButContainer">
             <button class="btn widget BottomBarBut d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="Toturial">Game Guid
             </button>
 
-            <button class="btn widget uib_w_46 d-margins btn-default BottomBarBut" data-uib="twitter%20bootstrap/button" data-ver="1" id="howtoplay">how to paly
+            <button class="btn widget uib_w_46 d-margins btn-default BottomBarBut" data-uib="twitter%20bootstrap/button" data-ver="1" onclick="ButtonsState();" id="howtoplay">how to paly
             </button>
 
-            <button data-ver="1" class="BottomBarBut btn widget d-margins btn-default" data-uib="twitter%20bootstrap/button" >FaceBook</button>
+            <button class="BottomBarBut btn widget d-margins btn-default" data-uib="twitter%20bootstrap/button" ><a href="https://play.google.com/store/apps/details?id=mathitnow.xdk.intel.blank.ad.template.android">Rate Us</a></button>
 
           </div>
-
-        </div>
-      </div>
+</div>
     </div>
 
 

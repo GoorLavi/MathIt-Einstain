@@ -3,132 +3,130 @@ var MathItApp = angular.module('MathItApp',[]);
 MathItApp.controller('MainPageCtrl', function($scope){
 
 
-var CharsList = [0,0,0,0,0];
-var OldCharsList = [0,0,0,0,0];
-//where is my position in the list
-var ListPosition = 0;
-
 var progressBarGreen = "progress-bar progress-bar-success progress-bar-striped";
 var progressBarOrang = "progress-bar progress-bar-danger";
 
-//check if the type is currect
-var TypeCheck = true;
+var CharsList = [];
+
 
 $scope.LifesLeft = 3;
 $scope.MovesLeft = 3;
 $scope.PlayerLvl = 1;
 $scope.WantedNumber = 11;
-$scope.Answer = 'your answer';
+$scope.FullAnswer = 'your answer';
+$scope.Answer;
+$scope.ProgressBarText = "";
 
+
+
+var NextWantedNumber;
+
+// Takes the 100%
+// then the number calculate and return the precents
+function GetPrecent(HundredPre,Number){
+
+	return Math.round((Number/HundredPre)*100);
+}
+
+// Func Print the Answer precents on the progressBar
 function ShowPrecent(Answer)
 {
-	//math the precents
-	var Precent = (Answer/parseInt(document.getElementById("WantedNum").innerHTML))*100;
-	Precent = Math.round(Precent);
 
-	document.getElementById("demo").style.width = Precent+ "%";
+	//Get the precents
+	var Precent = GetPrecent($scope.WantedNumber,Answer);
 
-	if(Precent==100)
+
+
+	$('#demo')[0].style.width = Precent+ "%";
+
+	if (Precent > 100)
 		{
-			 document.getElementById("demo").className= progressBarGreen;
-			 document.getElementById("demo").innerHTML="Great Work";
-			 nextLevelFeatures();
-		}
-	else if (Precent > 100)
-		{
-			 document.getElementById("demo").className= progressBarOrang;
-			 document.getElementById("demo").style.width = 100+ "%";
-			 document.getElementById("demo").innerHTML="you are in the wrong way";
+			 $('#demo')[0].className= progressBarOrang;
+			 $('#demo')[0].style.width = 100+ "%";
+			 $scope.ProgressBarText = "you are in the wrong way";
 
 		}
 	else
 		{
 
-			 document.getElementById("demo").innerHTML=Precent +"%";
-
+			 $scope.ProgressBarText = Precent +"%";
 		}
-
-
-
-
 }
 
 
-function checkDotBug()
-{
-	if(CharsList[1] == '.')
-			{
+function ProgressBarSuccess(){
 
-				 if(!(OldCharsList[0] == 0))
-					{
+	$('#demo')[0].style.width = "100%";
 
-					 CharsList[0] = OldCharsList[0];
-					 CharsList[1] = OldCharsList[1];
-					 CharsList[2] = OldCharsList[2]+CharsList[2]/10;
-					}
-
-			}
-
-}
-
-function DoubelDot(thisNumber)
-{
-	if(OldCharsList[1] == '.' && thisNumber == '.')
-					return false;
-
-	return true;
-
-}
-
-
-function nextLevelFeatures()
-{
-
-	$('#nxt')[0].style.visibility="visible";
-	$('#tryagains')[0].style.visibility="hidden";
-	$('#lifenum')[0].style.visibility="hidden";
-	$('#lifestxt')[0].style.visibility="hidden";
-
-
-	$('.inputButton').disabled = true;
-
+	 $('#demo')[0].className= progressBarGreen;
+	 $scope.ProgressBarText = "Great Work";
 }
 
 
 
-$scope.MainPress = function(ThisNumber){
 
-	if(TypeIsCurrect(ThisNumber) ){
+var PressAvailable = function(PressedNumber){
 
-	if(DoubelDot(ThisNumber))
-	{
-		if($scope.MovesLeftFunc(ThisNumber))
-			{
+	return PressedNumber == '.' || $scope.MovesLeft > 0;
+}
 
-				CharsList[ListPosition]=ThisNumber;
+function LevelFinishedCheck(){
 
-					ListPosition++;
-					$scope.AnswerManager();
-					ShowPrecent(GetAnswer());
-			}
+	var finishPrecent = GetPrecent($scope.WantedNumber,$scope.Answer);
+
+	if(finishPrecent < 101 && finishPrecent > 99){
+		return true;
+	}
+
+	else {
+		return false;
+	}
+}
+
+$scope.MainPress = function(PressedNumber){
+
+
+	if(PressAvailable(PressedNumber)){
+
+		if(TypeIsCurrect(PressedNumber)){
+
+		$scope.MovesLeft--;
+
+
+		ClculateResault(PressedNumber)
+
+
+		$scope.AnswerManager();
+
+		// If user passed level
+		if(LevelFinishedCheck()){
+
+		    nextLevelFeatures();
+		}
 		else{
 
-		FadeTryAgaimBtn();
-
-	          ShakeAnswer();
-
-		 navigator.vibrate(300);
+		ShowPrecent($scope.Answer);
 		}
 
-	}
+
+		}
+		else{
+			ShakeCurrectButType(PressedNumber);
+		}
 	}
 	else{
-		ShakeCurrectButType(ThisNumber);
+
+		FadeTryAgainBtn();
+
+		 ShakeAnswer();
+
+		 navigator.vibrate(300);
 	}
+
 
 }
 
-var FadeTryAgaimBtn = function(){
+var FadeTryAgainBtn = function(){
 	$('#tryagains').addClass('Fade').delay(1000).queue(function(){
 			$(this).removeClass('Fade');
 		});
@@ -142,7 +140,7 @@ var ShakeAnswer = function(){
 
 var ShakeCurrectButType = function(PressedBut){
 
-	if(PressedBut < 10){
+	if(PressedBut > 10){
 		$('.numberBut').addClass('ShakeResult').delay(1000).queue(function(){
 			$(this).removeClass('ShakeResult');
 		});
@@ -157,139 +155,122 @@ var ShakeCurrectButType = function(PressedBut){
 }
 
 
-
-$scope.MovesLeftFunc = function(CurrentNumber)
-{
-
-	var CurrentMovesNumber = $scope.MovesLeft;
-
-	if(CurrentNumber == '.')
-		{
-		$scope.MovesLeft++;
-		return true;
-
-		}
-	else if(CurrentMovesNumber == 0 || (CurrentNumber == 'x' && CurrentMovesNumber < 2))
-	 {
-
-		 return false;
-          }
-
-	else
-	{
-	switch(CurrentNumber)
-	{
-    case '.':
-			CurrentMovesNumber++;
-			break;
-    case '^2':
-			CurrentMovesNumber-=2;
-			break;
-    default:
-		         CurrentMovesNumber--;
-			break;
-	}
-
-		$scope.MovesLeft = CurrentMovesNumber;
-
-		$('#show').removeClass('ShakeResult');
-		$('#tryagains').removeClass('Fade');
-
-
-		return true;
-	}
-}
-
-
-
-
 $scope.AnswerManager = function()
 {
+
+	var EndAnswer = $scope.Answer;
+
 	var answerString ="";
 
-	var EndAnswer="";
-		EndAnswer = GetAnswer();
+	for(var i = 0 ; i < CharsList.length ; i++)
+	{
+		answerString += CharsList[i] + " ";
+	}
 
-			for(var i = 0 ; i < ListPosition ; i++)
-			{
-				answerString+=CharsList[i]+" ";
-			}
-		$scope.Answer = answerString+" = "+EndAnswer;
+	$scope.FullAnswer = answerString + " = " + EndAnswer;
 
 
 }
 
 
 
-function GetAnswer()
+function ClculateResault(PressedBut)
 {
-	var Answer ;
 
-	if(ListPosition == 3)
-		{
-			//if the dot is in spot 4 in chars list
-			checkDotBug();
+	// If the 3 first pressing was already made
+	if(CharsList.length > 2){
 
-	switch(CharsList[1])
-		{
+		if(PressedBut == '.'){
+
+		}
+		else{
+			CharsList = [];
+			CharsList.push($scope.Answer);
+			CharsList.push(PressedBut);
+		}
+
+
+	}
+	 // If this is the 3 pressing
+	else if(CharsList.length > 1){
+
+		// Push the new number
+		CharsList.push(PressedBut);
+
+		switch(CharsList[1]){
 	    case '+':
-				Answer = CharsList[0] + CharsList[2];
+				$scope.Answer = CharsList[0] + PressedBut;
 				break;
 	    case '^':
-				Answer = Math.pow(CharsList[0],CharsList[2]);
+				$scope.Answer = Math.pow(CharsList[0],PressedBut);
 				break;
 	    case '-':
-				Answer = CharsList[0] - CharsList[2];
+				$scope.Answer = CharsList[0] - PressedBut;
 				break;
 	    case '/':
-				Answer = CharsList[0] / CharsList[2];
+				$scope.Answer = CharsList[0] / PressedBut;
 				break;
 	    case 'x':
-				Answer = CharsList[0] * CharsList[2];
+				$scope.Answer = CharsList[0] * PressedBut;
 				break;
 
 	    case '.':
-				Answer = CharsList[0] + (CharsList[2]/10);
+				$scope.Answer = CharsList[0] + (PressedBut/10);
 				break;
 		}
 
-			OldCharsList = CharsList.slice();
-			CharsList[0] = Answer;
-			CharsList[1] = 0;
-			CharsList[2] = 0;
-			ListPosition = 1;
+
+	$scope.Answer.toFixed(2)
+
 	}
-	else if(ListPosition == 2 && CharsList[1] == '^2')
-		{
-		CharsList[0]= Math.pow(CharsList[0],2);
-		Answer = CharsList[0];
-		ListPosition = 1;
+	else if (CharsList.length > 0){
 
-		}
-	else
+		// In case the operator was pressed is ^2
+		if(PressedBut == '^2')
 		{
-			Answer = CharsList[0];
-		}
 
-	Answer.toFixed(2);
-	return Answer;
+			$scope.Answer = Math.pow(CharsList[0],2);
+
+			CharsList.push('^');
+			CharsList.push('2');
+
+			// The Operator coast 2 moves
+			$scope.MovesLeft--;
+
+
+			$scope.Answer.toFixed(2)
+		}
+		else{
+		// Push the new MatAction to the array
+		CharsList.push(PressedBut);
+		}
+	}
+	else{
+
+		CharsList[0] = PressedBut;
+
+		// Print the first num after the equals mark
+		$scope.Answer = CharsList[0];
+
+
+	}
 }
 
 
 
 //check if our get type is ok
-function TypeIsCurrect(ThisNumber)
+function TypeIsCurrect(PressedNumber)
 {
-	if(ListPosition%2 == 0)
+	if(CharsList.length % 2 == 0)
 		{
-		 if(ThisNumber<10)
+		 if(PressedNumber < 10)
 				 return true;
 			else
 				return false;
 		}
 	else
 		{
-			if(ThisNumber>'!')
+			if(PressedNumber > '!')
 				 return true;
 			else
 				return false;
@@ -300,44 +281,10 @@ function TypeIsCurrect(ThisNumber)
 
 
 
- $scope.NextLVLmain = function(LvlsToJump)
-{
-   while(LvlsToJump>0)
-	{
-	LvlsToJump--;
-	AnyMoveLeft();
-	HideUnecessaryObjects();
-	VisibleNecessaryObjects();
-	CalcNextLvl();
-
-	$scope.ClearData(false);
-	}
-	//save the new record
-	HighRecord($scope.PlayerLvl);
-}
-
-function HideUnecessaryObjects()
-{
-	$('#nxt')[0].style.visibility = "hidden";
-}
-
-
-function VisibleNecessaryObjects()
-{
-
-	$('#tryagains')[0].style.visibility = "visible";
-	$('#lifenum')[0].style.visibility = "visible";
-	$('#lifestxt')[0].style.visibility = "visible";
-
-	$('.inputButton').disabled = false;
-
-}
-
-var NextWantedNumber;
 
 function CalcNextLvl()
 {
-	var WantedNumber = parseInt(document.getElementById("WantedNum").innerHTML);
+	var WantedNumber = $scope.WantedNumber;
 	 NextWantedNumber = RandomWantedNumber(WantedNumber,(WantedNumber*1.3+RandomWantedNumber(1,4)))+2;
 
 	var NewMovesNumber = NeededMoves(NextWantedNumber);
@@ -351,15 +298,7 @@ function RandomWantedNumber(min,max)
     return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-//printing function
-function ChangeLVLonHTML(NextWantedNumber,NewMovesNumber)
-{
-	$scope.WantedNumber = NextWantedNumber;
 
-	$scope.PlayerLvl++;
-
-	$scope.MovesLeft = NewMovesNumber;
-}
 
 //take the number needed to achive and decide how mutch moves
 function NeededMoves(Number)
@@ -389,14 +328,12 @@ $scope.ClearData = function(TakeAlife)
 
 	InitProgressBar();
 
-	$scope.Answer = "your answer";
+	$scope.FullAnswer = "your answer";
 
 
 	if($('#tryagains').hasClass('Fade')){
 	$('#tryagains').removeClass('Fade');
 	}
-
-
 
 
 	//if player pressed Try Again button
@@ -429,7 +366,7 @@ $scope.ClearData = function(TakeAlife)
 
 function StartAgain(){
 
-	 $scope.Answer = "your answer";
+	 $scope.FullAnswer = "your answer";
 
 
 	var neededMoves = NeededMoves(WantedNumber);
@@ -441,10 +378,10 @@ function StartAgain(){
 
 function InitProgressBar(){
 
-	var ProgressBar = $('#demo')[0];
-	ProgressBar.text = "0";
-	ProgressBar.style.width = "0%";
-	ProgressBar.className = "progress-bar progress-bar-info progress-bar-success";
+
+	$scope.ProgressBarText = "";
+	$('#demo')[0].style.width = "0%";
+	$('#demo')[0].className = "progress-bar progress-bar-info progress-bar-success";
 
 	}
 
@@ -453,7 +390,7 @@ function InitProgressBar(){
 	$scope.WantedNumber = "11";
 	$scope.PlayerLvl = 1;
 
-         $scope.Answer = "your answer";
+         $scope.FullAnswer = "your answer";
 	$scope.MovesLeft = 3;
 
 	InitProgressBar();
@@ -461,7 +398,6 @@ function InitProgressBar(){
 
 	CharsList = [];
 
-	ListPosition = 0;
 
 	//fold opend sidebar ^ stop blinking
 	uib_sb.toggle_sidebar($(".uib_w_55"));
@@ -474,7 +410,14 @@ function AnyMoveLeft()
 {
 
 	if($scope.MovesLeft > 0)
-		$scope.LifesLeft++;
+		return true;
+
+	return false;
+}
+
+function IncreaseLifeBy(Number){
+
+	$scope.LifesLeft += Number;
 }
 
 function PageLoadManager()
@@ -573,5 +516,99 @@ function FirstLounchDate()
 }
 
 
+function ThereIsConnection()
+{
+	return intel.xdk.device.connection != "null";
+}
+
+
+
+
+ $scope.NextLVLmain = function()
+{
+
+	 // If user finished the level without using
+	 // all the moves
+	if(AnyMoveLeft()){
+
+		IncreaseLifeBy($scope.MovesLeft/2);
+	}
+
+	HideUnecessaryObjects();
+
+	VisibleNecessaryObjects();
+
+	CalcNextLvl();
+
+	$scope.ClearData(false);
+	//save the new record
+	HighRecord($scope.PlayerLvl);
+}
+
+function HideUnecessaryObjects()
+{
+	$('#nxt')[0].style.visibility = "hidden";
+}
+
+
+function VisibleNecessaryObjects()
+{
+
+	$('#tryagains')[0].style.visibility = "visible";
+	$('#lifenum')[0].style.visibility = "visible";
+	$('#lifestxt')[0].style.visibility = "visible";
+	$("#MovesNumber")[0].style.visibility = "visible";
+
+	$('.inputButton').disabled = false;
+
+
+	 $("#WantedNum").removeClass('swashOut');
+	 $("#WantedNum").addClass('tinUpIn');
+
+}
+
+
+function nextLevelFeatures()
+{
+
+    ProgressBarSuccess();
+
+	  $("#nxt").css( "visibility", "visible" ).addClass("nextLvlStartBounce bounce arrow")
+		  .delay(780).queue(function(){
+    		$(this).removeClass("nextLvlStartBounce").dequeue(); });
+
+	if($("#WantedNum").hasClass('tinUpIn')){
+	   $("#WantedNum").removeClass('tinUpIn').addClass('swashOut');
+	}
+	else{
+	 $("#WantedNum").addClass('magictime swashOut');
+	}
+
+	$("#MovesNumber").css("visibility", "hidden");
+	$("#tryagains").css("visibility", "hidden");
+	$("#lifenum").css("visibility", "hidden");
+	$("#lifestxt").css("visibility", "hidden");
+
+
+
+	$('.inputButton').disabled = true;
+
+    if(ThereIsConnection() && $scope.PlayerLvl % 5 == 0)
+	{
+	    createInterstitial();
+	}
+
+
+}
+
+	//printing function
+function ChangeLVLonHTML(NextWantedNumber,NewMovesNumber)
+{
+	$scope.WantedNumber = NextWantedNumber;
+
+	$scope.PlayerLvl++;
+
+	$scope.MovesLeft = NewMovesNumber;
+}
 
 });
