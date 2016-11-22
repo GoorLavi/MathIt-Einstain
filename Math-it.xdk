@@ -1,12 +1,12 @@
 {
   "project": {
-    "projectSettingsVersion": "2.0.0",
+    "projectSettingsVersion": "3.0.0",
     "creationData": {
       "type": "App Designer",
       "projectTypeName": "com.intel.xdk.projecttype.webapp",
       "src": "appDesigner",
       "projectGuid": "55aeb484-e754-4a09-88a1-de0c6b2c806b",
-      "lastModifiedDate": 1453234085770,
+      "lastModifiedDate": 1479844494405,
       "creationDate": 1433344853244
     },
     "XDK-app-designer": "true",
@@ -19,64 +19,6 @@
     "cordovaPluginsDirectory": "plugins",
     "cordovaPlugins": [],
     "buildConfigurations": {
-      "Android-Crosswalk": {
-        "platform_": "android",
-        "runtime_": "W3C on Crosswalk",
-        "name_": "Android-Crosswalk",
-        "preferences_": {
-          "android-minSdkVersion": "14",
-          "android-targetSdkVersion": "19",
-          "android-installLocation": "auto",
-          "Fullscreen": true
-        },
-        "isActive_": true,
-        "appName_": "Math-it newton",
-        "appID_": "mathitnow.xdk.intel.blank.ad.template.crosswalk",
-        "appAccess_": {
-          "mode": "legacy",
-          "network": [
-            "*"
-          ],
-          "intents": [],
-          "navigation": []
-        },
-        "icons_": [
-          {
-            "relPath": "icon-3636.png",
-            "density": "ldpi",
-            "height": 36,
-            "width": 36
-          },
-          {
-            "relPath": "icon-4848.png",
-            "density": "mdpi",
-            "height": 48,
-            "width": 48
-          },
-          {
-            "relPath": "icon-7272.png",
-            "density": "hdpi",
-            "height": 72,
-            "width": 72
-          },
-          {
-            "relPath": "icon-9696.png",
-            "density": "xhdpi",
-            "height": 96,
-            "width": 96
-          }
-        ],
-        "splashes_": [],
-        "addlPermissions_": "",
-        "excludedLibraries_": "",
-        "iosProvs_": [],
-        "cordovaCLIVersion_": "4.1.2",
-        "crosswalkVersion_": "11",
-        "appVersion_": "4.4.5",
-        "appAuthor_": "goorlavi",
-        "appDescription_": "mathematic game for all ages",
-        "appVersionCode_": "5"
-      },
       "Android": {
         "platform_": "android",
         "runtime_": "W3C on Cordova",
@@ -89,6 +31,7 @@
           "Orientation": "portrait"
         },
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "Math-it",
         "appID_": "mathitnow.xdk.intel.blank.ad.template.android",
         "appAccess_": {
@@ -130,7 +73,6 @@
         "excludedLibraries_": "",
         "iosProvs_": [],
         "cordovaCLIVersion_": "4.1.2",
-        "crosswalkVersion_": "11",
         "appVersion_": "3.0.0",
         "appAuthor_": "goorlavi",
         "appDescription_": "mathematic game for all ages",
@@ -141,10 +83,11 @@
         "runtime_": "W3C on Cordova",
         "name_": "iOS",
         "preferences_": {
-          "ios-target": "6",
-          "ios-configuration": "adhoc"
+          "ios-configuration": "adhoc",
+          "deployment-target": "6"
         },
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "Math-it",
         "appID_": "mathitnow.xdk.intel.blank.ad.template.ios",
         "appAccess_": {
@@ -175,6 +118,7 @@
           "windows-publisher-id": ""
         },
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "Math-it",
         "appID_": "mathitnow.xdk.intel.blank.ad.template.windows8",
         "appAccess_": {
@@ -202,6 +146,7 @@
         "name_": "WebApp",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "Math-it",
         "appID_": "xdk.intel.blank.ad.template",
         "appAccess_": {
@@ -226,6 +171,7 @@
         "name_": "Chrome",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "Math-it",
         "appID_": "xdk.intel.blank.ad.template",
         "appAccess_": {
@@ -250,6 +196,7 @@
         "name_": "Firefox",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "Math-it",
         "appID_": "xdk.intel.blank.ad.template",
         "appAccess_": {
@@ -274,6 +221,7 @@
         "name_": "Facebook",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "Math-it",
         "appID_": "xdk.intel.blank.ad.template",
         "appAccess_": {
@@ -298,6 +246,7 @@
         "name_": "WP81",
         "preferences_": {},
         "isActive_": true,
+        "certificateId_": "",
         "appName_": "Math-it",
         "appID_": "not.yet.specified",
         "appAccess_": {
