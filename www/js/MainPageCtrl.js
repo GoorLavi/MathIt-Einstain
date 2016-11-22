@@ -63,11 +63,31 @@ function ProgressBarSuccess(){
 }
 
 
-
+var DotSecPressOccurred = true;
+var DotBool = false;
 
 var PressAvailable = function(PressedNumber){
 
-	return PressedNumber == '.' || $scope.MovesLeft > 0;
+	if(PressedNumber == '.' && !DotBool){
+	   DotBool = true;
+	   return true;
+	}
+	
+	if(DotBool){
+	    DotBool = false;
+	    DotSecPressOccurred = false;
+	    return true;
+	}
+	
+	if(!DotSecPressOccurred){
+	    DotSecPressOccurred = true;
+	}
+	
+	if($scope.MovesLeft > 0){
+	   return true;
+	}
+	
+	return false;
 }
 
 function LevelFinishedCheck(){
@@ -90,8 +110,9 @@ $scope.MainPress = function(PressedNumber){
 
 		if(TypeIsCurrect(PressedNumber)){
 
-		$scope.MovesLeft--;
-
+		if(!goorDotBool && DotSecPressOccurred){
+		   $scope.MovesLeft--;
+		}
 
 		ClculateResault(PressedNumber)
 
@@ -176,12 +197,11 @@ $scope.AnswerManager = function()
 
 function ClculateResault(PressedBut)
 {
-
+	
 	// If the 3 first pressing was already made
 	if(CharsList.length > 2){
 
 		if(PressedBut == '.'){
-
 		}
 		else{
 			CharsList = [];
@@ -278,9 +298,7 @@ function TypeIsCurrect(PressedNumber)
 		}
 }
 
-
-
-
+	
 
 function CalcNextLvl()
 {

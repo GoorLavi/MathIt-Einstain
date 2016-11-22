@@ -52,7 +52,6 @@
     {
         //start();
 
-        ButtonsState();
 
             uib_sb.close_all_sidebars();
 
@@ -63,10 +62,9 @@
 
 
         /* button  #buttom-bar */
-    $(document).on("click", "#buttom-bar", function(evt)
+    $(document).on("click", ".buttom-bar", function(evt)
     {
-	ButtonsState();
-         uib_sb.toggle_sidebar($(".uib_w_55"));
+         uib_sb.toggle_sidebar($("#BottomSideB"));
 
     });
 
@@ -76,7 +74,6 @@
          /* Other options: .modal("show")  .modal("hide")  .modal("toggle")
          See full API here: http://getbootstrap.com/javascript/#modals
             */
-        ButtonsState();
 	uib_sb.toggle_sidebar($(".uib_w_55"));
          $("#FirstTutorial").modal("toggle");
     });
