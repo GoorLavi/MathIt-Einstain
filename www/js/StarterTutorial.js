@@ -12,7 +12,7 @@ function TutorialManager()
 
 function FirstPlayerGame()
 {
-	if(localStorage.getItem("firstGame")==null || localStorage.getItem("firstGame")==false)
+	if(!localStorage.getItem("firstGame"))
 		{
 		localStorage.setItem("HighestRecorde", true);
 			return true;

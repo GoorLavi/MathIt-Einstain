@@ -1,345 +1,450 @@
-
-body
-{
-	width: 100% !important;
-
-    -webkit-touch-callout: none ;
-    -webkit-text-size-adjust: none ; -ms-text-size-adjust: none ;
-    -webkit-user-select: none ; -moz-user-select: none ; -ms-user-select: none ; user-select: none ;
-    -webkit-highlight: none ;
-    -webkit-tap-highlight-color: rgba(0,0,0,0) ;
-    -webkit-tap-highlight-color: transparent ;      /* For some Androids */
-	position: absolute !important;
-	  background: white ;
-    color: black ;
-
-    -ms-touch-action: pan-y ;
-    -ms-content-zooming: none ;
-
-
-clip: auto !important;
-position: absolute !important;
-overflow: hidden !important;
-	padding: 0px 0px 0px 0px !important;
+body {
+    width: 100% !important;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-highlight: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    /* For some Androids */
+    position: absolute !important;
+    background: white;
+    color: black;
+    -ms-touch-action: pan-y;
+    -ms-content-zooming: none;
+    clip: auto !important;
+    position: absolute !important;
+    overflow: hidden !important;
+    padding: 0px 0px 0px 0px !important;
+    font-family: 'Merriweather', serif;
+    font-size: 4.3vw;
 }
 
-html
-{
-    -ms-touch-action: pan-x ;
-
-	padding: 0px 0px 0px 0px !important;
+html {
+    -ms-touch-action: pan-x;
+    padding: 0px 0px 0px 0px !important;
 }
 
-input, textarea
-{
-    -webkit-user-select: text ; -moz-user-select: text ; -ms-user-select: text ; user-select: text ;
+input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }
 
-.HighRecord
-{
-	font-size: 4vh;
-	font-weight: bold;
-	width: 48%;
-	padding-top: 8%;
+.HighRecord {
+    font-size: 4vh;
+    font-weight: bold;
+    width: 48%;
+    padding-top: 8%;
 }
 
-.containerHighRecord
-{
-	width: 88%;
-	margin-left: 6%;
-	margin-right: 6%;
-	margin-bottom: 2%;
-	text-align:center;
-	Background-color:#2b2b2b;
-	border-color:darkslategrey;
-	border-width: 7%;
-	border-style: groove;
-	padding-left: 4%;
-	padding-right: 4%;
-	display: inline-block;
-	box-shadow: 0px 1px 8px grey;
+#HighRecordContainer {
+    width: 48%;
+    height: auto;
+    display: inline-block;
+    text-align: center;
 }
 
-.ShakeResult
-{
-	-webkit-animation:Shake 0.3s;
-
-    -webkit-animation-iteration-count:1;
+#HighestScoreContainer {
+    width: 48%;
+    height: auto;
+    display: inline-block;
+    text-align: center;
 }
 
-@-webkit-keyframes Shake
-{
- 0%     {
-    -webkit-transform: translateX(0px);
-    transform: translateX(0px);
-	}
-	 20%, 60%
-	{
-    -webkit-transform: translateX(-10px);
-    transform: translateX(-10px);
-  }
-  40% ,80%
-	{
-    -webkit-transform: translateX(+10px);
-    transform: translateX(+10px);
-  }
-	100%
-	{
-    -webkit-transform: translateX(0px);
-    transform: translateX(0px);
-  }
+#tryagains {
 
+	max-width: 500%;
+	min-width: 29%;
+	font-size: 31px;
+	border-top-left-radius: 4vh;
+	border-top-right-radius: 4vh;
+	bottom: -2%;
+	position: fixed;
+	right: 5%;
 }
 
 
-button
-{
+.inline-block {
+    display: inline-block;
+}
+
+
+#footerContainer {
+  height: 11%;
+padding-top: 2vh;
+}
+
+#OptionsButton {
+    float: right;
+    color: #002EB8;
+    opacity: 0.6;
+    font-size: 5vh;
+    background-color: transparent !important;
+    border: 0px;
+    /* margin-top: 2%; */
+}
+
+#lifesContainer {
+    font-size: 10vw;
+    width: 50%;
+    text-align: center;
+}
+
+#LifeToMovesBtn {
+    /* display: inline-block; */
+    float: left;
+    color: #002EB8;
+    opacity: 0.6;
+    font-size: 5vh;
+    background-color: transparent !important;
+    border: 0px;
+    /* margin-top: 2%; */
+}
+
+#MainPageHeader {
+    position: absolute;
+    height: 11%;
+    width: 100%;
+    /* padding-top: 1px; */
+    background-image: url(../images/hey.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100% 100%;
+    text-align: center;
+}
+
+#MainPageContainer {
+    position: fixed;
+    top: 11%;
+    width: 100%;
+}
+
+#headerContainer {
+    height: 80%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    /* line-height: 100%; */
+    margin-top: 2vh;
+}
+
+
+#WantedNum {
+    display: inline-block;
+    color: #FF8247;
+}
+
+
+
+#AllYouNeedContainer {
+    font-size: 8.1vw;
+    margin-bottom: 2vh;
+    height: 40%;
+    padding-top: 4%;
+}
+
+#infoContainer {
+    height: 28%;
+}
+
+#MovesAndAnswerContainer {
+    padding-left: 4vw;
+    /* position: fixed; */
+    padding-right: 4vw;
+    width: 100%;
+    padding-top: 1vh;
+    height: 26%;
+}
+
+#AllYouNeedContainer {
+    width: 100%;
+    /* margin-left: 19%; */
+    /* margin-right: 19%; */
+    font-size: 8.1vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    height: 30%;
+    text-align: center;
+		padding-top: 1.4vh;
+}
+
+.largeFont {
+        font-size: 7vw;
+}
+
+.btn-group {
+    margin-bottom: 2vh;
+}
+
+#PlayerLevel {
+    display: inline-block;
+    margin: 0px;
+    font-size: 6vh;
+    font-weight: 600;
+    color: #002EB8;
+    line-height: 1.3;
+    /* vertical-align: middle; */
+}
+
+.containerHighRecord {
+    width: 88%;
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-bottom: 2%;
+    text-align: center;
+    Background-color: #2b2b2b;
+    border-color: darkslategrey;
+    border-width: 7%;
+    border-style: groove;
+    padding-left: 4%;
+    padding-right: 4%;
+    display: inline-block;
+    box-shadow: 0px 1px 8px grey;
+}
+
+.ShakeResult {
+    -webkit-animation: Shake 0.3s;
+    -webkit-animation-iteration-count: 1;
+}
+
+@-webkit-keyframes Shake {
+    0% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+    20%, 60% {
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px);
+    }
+    40%, 80% {
+        -webkit-transform: translateX(+10px);
+        transform: translateX(+10px);
+    }
+    100% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+}
+
+button {
     outline: none !important;
 }
 
-.transfert
-{
-background-color: transparent !important;
-	border:0px;
+.transfert {
+    background-color: transparent !important;
+    border: 0px;
 }
 
-button.IconsHover:hover
-{
-	color: silver;
+button.IconsHover:hover {
+    color: silver;
 }
 
-.arrow
-{
-	-webkit-animation-duration: 2s;
+.arrow {
+    -webkit-animation-duration: 2s;
     animation-duration: 2s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
     -webkit-animation-timing-function: linear;
     animation-timing-function: linear;
-    animation-iteration-count:infinite;
-    -webkit-animation-iteration-count:infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
 }
 
-@-moz-keyframes bounce
-{
-  0%, 20%, 50%, 80%, 100% {
-    -moz-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -moz-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-  60% {
-    -moz-transform: translateY(-15px);
-    transform: translateY(-15px);
-  }
+@-moz-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -moz-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -moz-transform: translateY(-30px);
+        transform: translateY(-30px);
+    }
+    60% {
+        -moz-transform: translateY(-15px);
+        transform: translateY(-15px);
+    }
 }
 
-@-webkit-keyframes bounce
-{
-  0%, 20%, 50%, 80%, 100% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-  60% {
-    -webkit-transform: translateY(-15px);
-    transform: translateY(-15px);
-  }
+@-webkit-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(-30px);
+        transform: translateY(-30px);
+    }
+    60% {
+        -webkit-transform: translateY(-15px);
+        transform: translateY(-15px);
+    }
 }
 
-@keyframes bounce
-{
-  0%, 20%, 50%, 80%, 100% {
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  40% {
-    -moz-transform: translateY(-30px);
-    -ms-transform: translateY(-30px);
-    -webkit-transform: translateY(-30px);
-    transform: translateY(-30px);
-  }
-  60% {
-    -moz-transform: translateY(-15px);
-    -ms-transform: translateY(-15px);
-    -webkit-transform: translateY(-15px);
-    transform: translateY(-15px);
-  }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -moz-transform: translateY(-30px);
+        -ms-transform: translateY(-30px);
+        -webkit-transform: translateY(-30px);
+        transform: translateY(-30px);
+    }
+    60% {
+        -moz-transform: translateY(-15px);
+        -ms-transform: translateY(-15px);
+        -webkit-transform: translateY(-15px);
+        transform: translateY(-15px);
+    }
 }
 
-.bounce
-{
-   animation-timing-function: linear;
-  -moz-animation: bounce 2s infinite;
-  -webkit-animation: bounce 2s infinite;
-  animation: bounce 2s infinite;
+.bounce {
+    animation-timing-function: linear;
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
 }
 
-.styleNextLVlbut
-{
-	border-radius: 10%;
-	padding-bottom: 0px;
-	padding-left: 3px;
-	padding-right: 3px;
-	padding-top: 0px;
-	position: fixed;
-	top: 87%;
-
+.styleNextLVlbut {
+    border-radius: 10%;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 0px;
+    position: fixed;
+    top: 87%;
 }
 
-.Fade
-{
-
-    -webkit-animation:FadeIn 2s;
-    -ms-animation:FadeIn 2s;
-    -moz-animation:FadeIn 2s;
-    -o-animation:FadeIn 2s;
-
-
-    -webkit-animation-iteration-count:infinite;
+.Fade {
+    -webkit-animation: FadeIn 2s;
+    -ms-animation: FadeIn 2s;
+    -moz-animation: FadeIn 2s;
+    -o-animation: FadeIn 2s;
+    -webkit-animation-iteration-count: infinite;
 }
 
-@-webkit-keyframes FadeIn
-{
- 	from {opacity: 1;}
-	to {opacity: 0.2;}
-
-	 0%, 20%, 50%, 80%, 100% {
-    -webkit-transform: opacity:1;
-    transform: opacity: 0.2;
-  }
-
+@-webkit-keyframes FadeIn {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.2;
+    }
+    0%, 20%, 50%, 80%, 100% {
+        -webkit-transform: opacity: 1;
+        transform: opacity: 0.2;
+    }
 }
 
-
-.nextLvlStartBounce
-{
+.nextLvlStartBounce {
     position: fixed !important;
-	top: 0px;
-
-
-    -webkit-animation:nextLvlStartBounce 0.8s;
-
-    -webkit-animation-iteration-count:1;
+    top: 0px;
+    -webkit-animation: nextLvlStartBounce 0.8s;
+    -webkit-animation-iteration-count: 1;
 }
 
-@-webkit-keyframes nextLvlStartBounce
-{
-
-	from {position: fixed !important;
-	top: 0px;}
-	to {position: fixed !important;
-	top: 88%}
+@-webkit-keyframes nextLvlStartBounce {
+    from {
+        position: fixed !important;
+        top: 0px;
+    }
+    to {
+        position: fixed !important;
+        top: 88%
+    }
 }
 
-.TutorialPart0
-{
-    -webkit-animation:FirstTutorialTextBlink 2s;
-    -webkit-animation-iteration-count:infinite;
-
+.TutorialPart0 {
+    -webkit-animation: FirstTutorialTextBlink 2s;
+    -webkit-animation-iteration-count: infinite;
 }
 
-@-webkit-keyframes FirstTutorialTextBlink
-{
-
-
-    0%   {opacity: 1;}
-    50%  {opacity: 0.5;}
-    75%  {opacity: 1;}
-
+@-webkit-keyframes FirstTutorialTextBlink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    75% {
+        opacity: 1;
+    }
 }
 
-.popupClass
-{
-  	background-size: cover;
-	background-repeat: no-repeat;
-	height: 80vh;
+.popupClass {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 80vh;
 }
 
-.FirstTutorial
-{
-
-	background-image: url("../HowToPlay/window1.png");
-}
-.SecoundTutorial
-{
-
-	background-image: url("../HowToPlay/window2.png");
-
-}
-.ThirdTutorial
-{
-	height: 85vh !important;
-	background-image: url("../HowToPlay/window3.png");
-
-}
-.FourTutorial
-{
-
-	background-image: url("../HowToPlay/window4.png");
-
+.FirstTutorial {
+    background-image: url("../HowToPlay/window1.png");
 }
 
-.blink
-{
-    -webkit-animation:blink 2s;
-    -webkit-animation-iteration-count:5;
+.SecoundTutorial {
+    background-image: url("../HowToPlay/window2.png");
 }
 
-@-webkit-keyframes blink
-{
-	0%
-	{
-		opacity: 1;
-	}
-	50%
-	{
-		opacity: 0.2;
-	}
-	100%
-	{
-		opacity: 1;
-	}
+.ThirdTutorial {
+    height: 85vh !important;
+    background-image: url("../HowToPlay/window3.png");
 }
 
-.startOver
-{
-	width: 94%;
-	margin-left: 2%;
-	margin-right: 2%;
-	border-color: darkslategrey;
-	border:1%;
-	margin-bottom: 2%;
-	color:deepskyblue;
-
+.FourTutorial {
+    background-image: url("../HowToPlay/window4.png");
 }
 
-.Align-center
-{
-	align-content: center;
-	align-items: center;
-	align-self: center;
+.blink {
+    -webkit-animation: blink 2s;
+    -webkit-animation-iteration-count: 5;
 }
 
-#BottomBarButContainer
-{
-	width: 100%;
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
-#BottomBarButContainer button
-{
-	width: 32%;
-
+.startOver {
+    width: 94%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-color: darkslategrey;
+    border: 1%;
+    margin-bottom: 2%;
+    color: deepskyblue;
 }
 
-.lifestryagainContainer
-{
-	margin-top: 2%;
+.Align-center {
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+#BottomBarButContainer {
+    width: 100%;
+}
+
+#BottomBarButContainer button {
+    width: 32%;
+}
+
+.lifestryagainContainer {
+    margin-top: 2%;
 }
