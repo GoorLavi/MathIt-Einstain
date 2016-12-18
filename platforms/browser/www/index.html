@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="icon-fonts/font-awesome-4.3.0/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="icon-fonts/elusive-icons-2.0.0/css/elusive-icons.css">
+        <link rel="stylesheet" type="text/css" href="simplex/css/simplex.min.css" class="uib-framework-theme">
+        <meta charset="UTF-8">
+        <title>game it</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+
+        <style>
+            @-ms-viewport {
+                width: 100vw;
+                min-zoom: 100%;
+                zoom: 100%;
+            }
+            @viewport {
+                width: 100vw;
+                min-zoom:100% zoom: 100%;
+            }
+            @-ms-viewport {
+                user-zoom: fixed;
+                min-zoom: 100%;
+            }
+            @viewport {
+                user-zoom: fixed;
+                min-zoom: 100%;
+            }
+
+        </style>
+
+        <!-- Tech -->
+        <!-- <script type="application/javascript" src="lib/angular-1.5.8/angular.js"></script> -->
+        <script type="application/javascript" src="lib/jquery/jquery.min.js"></script>
+        <script type="application/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
+        <script type="application/javascript" src="lib/ionic/js/ionic.js"></script>
+        <!-- FrameWorks /-->
+
+        <!-- Ionic -->
+        <script type="application/javascript" src="lib/ionic/js/ionic.bundle.min.js"></script>
+        <script type="application/javascript" src="lib/ionic/js/ionic-angular.min.js"></script>
+
+        <link rel="stylesheet" href="lib/ionic/css/ionic.css">
+        <!-- Ionic -->
+
+        <script type="application/javascript" src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/magic.css">
+        <link rel="stylesheet" href="sidebar/css/bottomBar.css">
+        <link rel="stylesheet" href="fonts/Merriweather-Regular.ttf">
+
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <script type="application/javascript" src="js/app.js"></script>
+        <script type="application/javascript" src="js/controllers/MainPageCtrl.js"></script>
+        <script type="application/javascript" src="js/controllers/BottomBarCtrl.js"></script>
+
+        <script type="application/javascript" src="js/services/generalService.js"></script>
+
+        <script src="js/StarterTutorial.js"></script>
+
+        <script src="js/admob1.js"></script>
+        <script src="js/admob2.js"></script>
+        <script src="js/admob3.js"></script>
+        <script src="js/AdBanner.js"></script>
+
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+    </head>
+    <body ng-app="MathItApp">
+        <div ng-controller="MainPageCtrl" id="mainPage">
+            <div id="MainPageHeader" data-uib="layout/header" data-ver="0">
+                <div id="headerContainer">
+
+                    <button id="LifeToMovesBtn" ng-click="LifeToMoves();" style="font-size:5vh;">
+                        <i class="el el-star" data-position="icon only"></i>
+                    </button>
+
+                    <p id="PlayerLevel">level
+                        {{PlayerLvl}}</p>
+
+                    <button id="OptionsButton" ng-click="OpenBottomBar()" class="bottom-bar" style="font-size:5vh;">
+                        <i class="el el-cog" data-position="icon only"></i>
+                    </button>
+                </div>
+
+            </div>
+            <div id="MainPageContainer">
+
+                <div id="infoContainer">
+                    <div id="AllYouNeedContainer">
+                        <p id="AllYouNeedText">all you need is</p>
+                        <p id="WantedNum">{{WantedNumber}}</p>
+                    </div>
+
+                    <div id="progressBar" class="progress full-width-widget widget uib_w_36 active progress-striped nuthing" data-uib="twitter%20bootstrap/progress_bar" data-ver="1">
+                        <div id="demo" class="progress-bar progress-bar-info progress-bar-success" style="width: 0%;">
+                            {{ProgressBarText}}
+                        </div>
+                    </div>
+
+                    <div id="MovesAndAnswerContainer">
+                        <div class="mdWidth floatLeft">
+                            <p id="show" class="orangeTextTheme bolderWight largeFont">{{FullAnswer}}</p>
+                        </div>
+                        <div class="mdWidth floatRight">
+                            <p id="MovesLeftText" class="blueTextTheme bolderWight largeFont">moves left</p>
+                            <p id="MovesNumber" class="orangeTextTheme bolderWight largeFont">{{MovesLeft}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="btnsContainer">
+
+                    <div class="btn-group uib-bs-flex">
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(1);">1</button>
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(2);">2</button>
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(3);">3</button>
+                    </div>
+
+                    <div class="btn-group uib-bs-flex">
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(4);">4</button>
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(5);">5</button>
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(6);">6</button>
+                    </div>
+
+                    <div class="btn-group uib-bs-flex">
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(7);">7</button>
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(8);">8</button>
+                        <button class="inputButton all-but btn-info numberBut" ng-click="MainPress(9);">9</button>
+                    </div>
+
+                    <div class="btn-group uib-bs-flex">
+
+                        <button id="zeroBtn" class="inputButton all-but btn-info numberBut" ng-click="MainPress(0);">0</button>
+                        <button class="inputButton btn-default secBut actionBut" ng-click="MainPress('.');">.</button>
+                    </div>
+
+                    <div class="btn-group uib-bs-flex">
+                        <button class="inputButton btn-default secBut actionBut" ng-click="MainPress('+');">+</button>
+                        <button class="inputButton btn-default secBut actionBut" ng-click="MainPress('^2');">X^2</button>
+                        <button class="inputButton btn-default secBut actionBut" ng-click="MainPress('-');">-</button>
+                    </div>
+
+                    <div class="btn-group uib-bs-flex">
+                        <button class="inputButton btn-default secBut actionBut" ng-click="MainPress('x');">X</button>
+                        <button class="inputButton btn-default secBut actionBut" ng-click="MainPress('^');">X^</button>
+                        <button class="inputButton btn-default secBut actionBut" ng-click="MainPress('/');">/</button>
+                    </div>
+                </div>
+
+                <div id="footerContainer">
+                    <div id="lifesContainer">
+                        <p id="lifestxt" class="blueTextTheme">lifes</p>
+                        <p id="lifenum" class="orangeTextTheme">{{LifesLeft}}</p>
+                    </div>
+                </div>
+
+                <button id="tryagains" class=" btn widget uib_w_39 buttonss btn-danger" ng-click="ClearData(true);">Try again
+                </button>
+
+                <button id="nxt" ng-click="NextLVLmain();" class="bounce arrow">
+                    <i class="el el-asl button-icon-left" data-position="left"></i>Next Level</button>
+
+            </div>
+        </div>
+    </body>
+
+</html>
