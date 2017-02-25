@@ -1,13 +1,18 @@
-MathItApp.service('GeneralService', function() {
+MathItApp.service('GeneralService',['$cordovaNetwork', function($cordovaNetwork) {
 
     var self = this;
+
+    self.NetworkConnected = function () {
+
+      return $cordovaNetwork.isOnline();
+    };
 
     self.GetHighestScore = function() {
 
         if (LocalStorageExist()) {
             return localStorage.getItem("HighestScore");
         }
-    }
+    };
 
     self.SaveHighestScore = function(highestScore) {
 
@@ -16,7 +21,7 @@ MathItApp.service('GeneralService', function() {
             // Save the best level record to local storage
             localStorage.setItem("HighestScore", highestScore);
         }
-    }
+    };
 
 
     self.GetHighestLevelRecord = function() {
@@ -25,7 +30,7 @@ MathItApp.service('GeneralService', function() {
 
             return localStorage.getItem("HighestLevelRecord");
         }
-    }
+    };
 
     self.SaveHighestLevelRecord = function(highestLevelRecord) {
 
@@ -34,7 +39,7 @@ MathItApp.service('GeneralService', function() {
             // Save the best level record to local storage
             localStorage.setItem("HighestLevelRecord", highestLevelRecord);
         }
-    }
+    };
 
     // Return true is there is local storage
     function LocalStorageExist() {
@@ -48,4 +53,4 @@ MathItApp.service('GeneralService', function() {
         }
     }
 
-});
+}]);

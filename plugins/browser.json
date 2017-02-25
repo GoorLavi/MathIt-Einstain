@@ -7,8 +7,14 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.example.MathIt"
+        },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.yourname.workshop"
+            "PACKAGE_NAME": "com.example.MathIt"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.example.MathIt"
         }
     },
     "dependent_plugins": {}

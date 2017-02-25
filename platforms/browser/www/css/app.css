@@ -76,7 +76,8 @@ input, textarea {
 
 
 #footerContainer {
-    height: 11%;
+  height: 11%;
+padding-top: 2vh;
 }
 
 #OptionsButton {
@@ -87,6 +88,12 @@ input, textarea {
     background-color: transparent !important;
     border: 0px;
     /* margin-top: 2%; */
+}
+
+#lifesContainer {
+    font-size: 10vw;
+    width: 50%;
+    text-align: center;
 }
 
 #LifeToMovesBtn {

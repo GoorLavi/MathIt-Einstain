@@ -249,6 +249,9 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     debugCompile(project(path: "CordovaLib", configuration: "debug"))
     releaseCompile(project(path: "CordovaLib", configuration: "release"))
+    compile "com.google.android.gms:play-services-games:+"
+    compile "com.google.android.gms:play-services-plus:+"
+    compile "com.google.android.gms:play-services-ads:+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

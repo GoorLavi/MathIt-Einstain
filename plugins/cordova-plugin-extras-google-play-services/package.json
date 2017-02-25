@@ -1,0 +1,14 @@
+{
+    "version": "1.0.5",
+    "name": "cordova-plugin-extras-google-play-services",
+    "cordova_name": "Google Play Services for Android",
+    "platforms": [
+        "android"
+    ],
+    "engines": [
+        {
+            "name": "cordova",
+            "version": ">=3.0.0"
+        }
+    ]
+}

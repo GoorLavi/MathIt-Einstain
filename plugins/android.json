@@ -1,0 +1,25 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.example.MathIt"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.example.MathIt"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.example.MathIt"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-extras-google-play-services": {
+            "PACKAGE_NAME": "com.example.MathIt"
+        }
+    }
+}

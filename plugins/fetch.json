@@ -6,5 +6,63 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-network-information": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-network-information"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-device": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-device"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-ad-admob": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-ad-admob"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-ad-admob-sdk": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk",
+            "subdir": "."
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-extras-google-play-services": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cranberrygame/cordova-plugin-extras-google-play-services",
+            "subdir": "."
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-admobpro": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-admobpro"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-extension": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-extension"
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }

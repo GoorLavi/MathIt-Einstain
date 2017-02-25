@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-ad-admob-sdk"
+    version="1.0.35">
+	
+    <name>Cordova Admob SDK</name>
+    <description>Cordova Admob SDK</description>
+    <author>Sang Ki Kwon (Cranberrygame)</author>		
+    <license>MIT</license>
+    <keywords>cordova,plugin,ad,admobsdk,monetisation</keywords>
+    <repo>https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk</repo>
+    <issue>https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk/issues</issue> 	
+	<engines>
+	    <engine name="cordova" version=">=3.0.0" />
+	</engines>
+		
+    <!-- android -->
+    <platform name="android">		
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
+			    android:name="com.google.android.gms.ads.AdActivity" />
+        </config-file>
+		
+        <config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+			<!-- After May 18, 2016, AdMob will begin using location data to target ads and improve monetization for users who have granted this permission to the app. -->
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+        </config-file>		
+		
+		<!-- cranberrygame start: com.google.playservices -->
+<!--		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+		</config-file>
+-->		
+		<!-- cranberrygame end -->
+		
+		<!-- cranberrygame start: com.google.playservices -->
+<!--		
+		<source-file src="src/android/google-play-services.jar" target-dir="libs" />
+		<source-file src="src/android/version.xml" target-dir="res/values" />
+-->		
+		<!-- cranberrygame end -->
+		
+<!--
+		<dependency id="com.google.playservices" url="https://github.com/MobileChromeApps/google-play-services" commit="1f56399572d255193f8f9564843df60e50938e69" />
+		<framework src="com.google.android.gms:play-services-ads:7.5.0" />
+
+		<dependency id="com.google.playservices@21.0.0" />
+-->
+		<dependency id="cordova-plugin-extras-google-play-services" url="https://github.com/cranberrygame/cordova-plugin-extras-google-play-services" />
+    </platform>
+
+	<!-- ios -->
+	<platform name="ios">
+		<framework src="src/ios/GoogleMobileAds.framework" custom="true" />		
+ 	    <framework src="StoreKit.framework" />
+ 	    <framework src="AudioToolbox.framework" />
+        <framework src="MessageUI.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="AdSupport.framework" />
+        <framework src="CoreTelephony.framework" />
+		<framework src="EventKit.framework" />
+		<framework src="EventKitUI.framework" />		
+		<framework src="QuartzCore.framework" />
+
+<!--
+		<hook type="after_plugin_add" src="hooks/after_plugin_add/000-create-links.sh" />
+--> 
+	</platform>
+	
+    <!-- wp8 -->
+    <platform name="wp8">
+		<config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+			<Capability Name="ID_CAP_IDENTITY_USER" />
+			<Capability Name="ID_CAP_NETWORKING" />
+			<Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+			<Capability Name="ID_CAP_PHONEDIALER" />
+			<Capability Name="ID_CAP_MEDIALIB_PHOTO" />
+        </config-file>
+		
+		<framework src="src/wp8/GoogleAds.dll" custom="true" />
+    </platform>
+	
+    <!-- windows (wp8.1) -->
+    <platform name="windows">
+	    <config-file target="package.windows.appxmanifest" parent="/Package/Capabilities">
+		    <Capability Name="internetClientServer" />
+        </config-file>
+        <config-file target="package.windows80.appxmanifest" parent="/Package/Capabilities">
+		    <Capability Name="internetClientServer" />
+        </config-file>
+        <config-file target="package.phone.appxmanifest" parent="/Package/Capabilities">
+		    <Capability Name="internetClientServer" />
+        </config-file>
+	
+		<framework src="src/wp8/GoogleAds.dll" custom="true" />
+    </platform>	
+</plugin>

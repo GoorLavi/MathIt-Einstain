@@ -16,7 +16,7 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
 
 
-        $ionicModal.fromTemplateUrl('./sidebar/bottomBar.html', function(modal) {
+        $ionicModal.fromTemplateUrl('./views/bottomBar.html', function(modal) {
             $scope.BottonBar = modal;
         }, {
             scope: $scope,
@@ -503,7 +503,7 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
     function ThereIsConnection() {
 
-        return $cordovaNetwork.isOnline();
+        return GeneralService.NetworkConnected();
     }
 
 
