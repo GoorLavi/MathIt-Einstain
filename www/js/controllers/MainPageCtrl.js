@@ -1,4 +1,4 @@
-MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService', function($scope, $ionicModal, GeneralService) {
+MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService', 'ConstantsService', function($scope, $ionicModal, GeneralService, ConstantsService) {
 
 
     var progressBarGreen = "progress-bar progress-bar-success progress-bar-striped";
@@ -16,14 +16,16 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
 
 
-        $ionicModal.fromTemplateUrl('./views/bottomBar.html', function(modal) {
-            $scope.BottonBar = modal;
-        }, {
-            scope: $scope,
-            backdropClickToClose: true,
-            // The animation we want to use for the modal entrance
-            animation: 'slide-in-up'
-        });
+    $ionicModal.fromTemplateUrl('./views/bottomBar.html', function(modal) {
+        $scope.BottonBar = modal;
+    }, {
+        scope: $scope,
+        backdropClickToClose: true,
+        // The animation we want to use for the modal entrance
+        animation: 'slide-in-up'
+    }).then(function(modal) {
+        $scope.buttomBar = modal;
+    });
 
 
     var NextWantedNumber;
@@ -33,6 +35,11 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
         $scope.BottonBar.show();
     };
 
+    // Close the bottom bar
+    // no UI access
+    var closeBottomBar = function() {
+        $scope.buttomBar.hide();
+    };
 
 
     function UpdateRecord() {
@@ -213,8 +220,6 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
     };
 
-
-
     function ClculateResault(PressedBut) {
 
         // If the 3 first pressing was already made
@@ -289,8 +294,6 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
         }
     }
 
-
-
     //check if our get type is ok
     function TypeIsCurrect(PressedNumber) {
         if (CharsList.length % 2 === 0) {
@@ -307,8 +310,6 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
         }
     }
 
-
-
     function CalcNextLvl() {
         var WantedNumber = $scope.WantedNumber;
         NextWantedNumber = RandomWantedNumber(WantedNumber, (WantedNumber * 1.3 + RandomWantedNumber(1, 4))) + 2;
@@ -318,12 +319,9 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
     }
 
-
     function RandomWantedNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
-
-
 
     //take the number needed to achive and decide how mutch moves
     function NeededMoves(Number) {
@@ -338,87 +336,130 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
         }
     }
 
-    //takeAlife =  true he lose false won
-    $scope.ClearData = function(TakeAlife) {
 
-        CharsList = [];
+    $scope.tryAgain = function() {
 
-        ListPosition = 0;
+        //If player have life left
+        if (takeLifes(1)) {
 
-        InitProgressBar();
+            var neededMoves = NeededMoves(gameState.getWantedNumber());
 
-        $scope.FullAnswer = "your answer";
+            var fullAnswer = ConstantsService.defaultGameState.fullAnswer;
 
+            gameState.changeGameState(null, null, neededMoves, fullAnswer, null);
 
-        if ($('#tryagains').hasClass('Fade')) {
-            $('#tryagains').removeClass('Fade');
+            commonInitializer();
+        } else {
+            //Todo Ui to player no lifes
         }
+    };
 
 
-        //if player pressed Try Again button
-        if (TakeAlife && $scope.LifesLeft > 0) {
-            $scope.LifesLeft--;
-            $scope.MovesLeft = NeededMoves($scope.WantedNumber);
-        }
 
+   var gameState = {
+         changeLifesLeft : function(newLifes) {
+            $scope.LifesLeft = angular.copy(newLifes);
+        },
+         changeLevel : function(newLevel) {
+            $scope.PlayerLvl = angular.copy(newLevel);
+        },
+         changeMovesLeft : function(newMoves) {
+            $scope.MovesLeft = angular.copy(newMoves);
+        },
+         changeFullAnswer : function(newFullAnswer) {
+            $scope.FullAnswer = angular.copy(newFullAnswer);
+        },
+         changeWantedNumber : function(newWantedNumber) {
+            $scope.WantedNumber = angular.copy(newWantedNumber);
+        },
 
-        //if player dont have more try again points
-        else if (TakeAlife && $scope.LifesLeft === 0) {
-            $('#lifenum').addClass('ShakeResult');
+        // ChangeGameState change only the included parameters
+         changeGameState : function(playerLevel, wantedNumber, movesLeft, fullAnswer, lifes) {
 
-            //         		uib_sb.toggle_sidebar($(".uib_w_55"));
+            if (lifes) {
+                this.changeLifesLeft(lifes);
+            }
+            if (playerLevel) {
+                this.changeLevel(playerLevel);
+            }
+            if (movesLeft) {
+                this.changeMovesLeft(movesLeft);
+            }
+            if (fullAnswer) {
+                this.changeFullAnswer(fullAnswer);
+            }
+            if (wantedNumber) {
+                this.changeWantedNumber(wantedNumber);
+            }
+        },
 
-            //		         $('#startover').addClass('blink');
-        }
-
-
-        //if he passed level
-        else {
-
-            $scope.MovesLeft = NeededMoves(NextWantedNumber);
-        }
+         getLifesLeft : function() {
+            return angular.copy($scope.LifesLeft);
+        },
+         getLevel : function() {
+            return angular.copy($scope.PlayerLvl);
+        },
+         getMovesLeft : function() {
+            return angular.copy($scope.MovesLeft);
+        },
+         getFullAnswer : function() {
+            return angular.copy($scope.FullAnswer);
+        },
+         getWantedNumber : function() {
+            return angular.copy($scope.WantedNumber);
+        },
 
     };
 
-    function StartAgain() {
+    // Decrement life by lifeToTake prop
+    // return true is succeed
+    function takeLifes(lifesToTake) {
 
-        $scope.FullAnswer = "your answer";
+        var lifeLeft = gameState.getLifesLeft();
 
+        // If decrementation is possible
+        if ((lifeLeft - lifesToTake) >= 0) {
 
-        var neededMoves = NeededMoves(WantedNumber);
-        $scope.WantedNumber = neededMoves;
-
-        InitProgressBar();
-
+            // Take lifes and return true
+            gameState.changeLifesLeft(lifeLeft - lifesToTake);
+            return true;
+        }
+        return false;
     }
 
     function InitProgressBar() {
 
-
         $scope.ProgressBarText = "";
         $('#demo')[0].style.width = "0%";
         $('#demo')[0].className = "progress-bar progress-bar-info progress-bar-success";
-
     }
 
-    $scope.StartOver = function() {
-        $scope.WantedNumber = "11";
-        $scope.PlayerLvl = 1;
+    // The initializer
+    // initialize level and game common things
+    var commonInitializer = function () {
 
-        $scope.FullAnswer = "your answer";
-        $scope.MovesLeft = 3;
+      InitProgressBar();
 
-        InitProgressBar();
+      CharsList = [];
+    }
 
+    // When user start again the game
+    $scope.$on('initializeGame', function(event) {
 
-        CharsList = [];
+        closeBottomBar();
 
+        // Initialize common thing
+        commonInitializer();
 
-        //fold opend sidebar ^ stop blinking
-        uib_sb.toggle_sidebar($(".uib_w_55"));
-        $('#startover').removeClass('blink');
-    };
+        var defaultGameStates = ConstantsService.defaultGameState;
 
+        gameState.changeGameState(defaultGameStates.playerLvl,
+          defaultGameStates.wantedNumber,
+          defaultGameStates.movesLeft,
+          defaultGameStates.fullAnswer,
+          defaultGameStates.lifes
+        );
+    });
 
     //check if was left moves and extand the lifes
     function AnyMoveLeft() {
@@ -507,8 +548,6 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
     }
 
 
-
-
     $scope.NextLVLmain = function() {
 
         // If user finished the level without using
@@ -593,5 +632,4 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
         $scope.MovesLeft = NewMovesNumber;
     }
-
 }]);

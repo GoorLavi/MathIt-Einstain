@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
-
-
     <meta charset="UTF-8">
-    <title>game it</title>
+
+    <title>game it now</title>
+
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
@@ -60,7 +59,6 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/magic.css">
     <link rel="stylesheet" href="css/bottomBar.css">
-    <link rel="stylesheet" href="ilb/fonts/Merriweather-Regular.ttf">
 
     <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
 
@@ -69,6 +67,8 @@
     <script type="application/javascript" src="js/controllers/BottomBarCtrl.js"></script>
 
     <script type="application/javascript" src="js/services/generalService.js"></script>
+    <script type="application/javascript" src="js/services/constantsService.js"></script>
+
 
     <script src="js/StarterTutorial.js"></script>
 
@@ -80,10 +80,7 @@
     <script type="application/javascript" src="js/index_user_scripts.js"></script>
 
 </head>
-
 <body ng-app="MathItApp">
-
-
     <div ng-controller="MainPageCtrl" id="mainPage">
         <div id="MainPageHeader">
             <div id="headerContainer">
@@ -173,7 +170,7 @@
                 </div>
             </div>
 
-            <button id="tryagains" class=" btn widget uib_w_39 buttonss btn-danger" ng-click="ClearData(true);">Try again
+            <button id="tryagains" class=" btn widget uib_w_39 buttonss btn-danger" ng-click="tryAgain();">Try again
                 </button>
 
             <button id="nxt" ng-click="NextLVLmain();" class="bounce arrow">
@@ -182,5 +179,4 @@
         </div>
     </div>
 </body>
-
 </html>

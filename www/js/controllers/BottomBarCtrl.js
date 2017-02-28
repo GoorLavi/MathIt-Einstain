@@ -1,4 +1,4 @@
-MathItApp.controller('BottomBarCtrl', ['$scope', 'GeneralService', function($scope, GeneralService) {
+MathItApp.controller('BottomBarCtrl', ['$scope', 'GeneralService','$rootScope', function($scope, GeneralService, $rootScope) {
 
     function init() {
 
@@ -6,7 +6,10 @@ MathItApp.controller('BottomBarCtrl', ['$scope', 'GeneralService', function($sco
         $scope.HighestScore = GeneralService.GetHighestScore();
     }
 
+$scope.startOver= function () {
+
+$rootScope.$broadcast('initializeGame');
+};
 
     init();
-
 }]);
