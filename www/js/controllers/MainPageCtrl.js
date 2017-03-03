@@ -1,8 +1,6 @@
 MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService', 'ConstantsService', function($scope, $ionicModal, GeneralService, ConstantsService) {
 
 
-    var progressBarGreen = "progress-bar progress-bar-success progress-bar-striped";
-    var progressBarOrang = "progress-bar progress-bar-danger";
 
     var CharsList = [];
 
@@ -69,31 +67,25 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
     function ShowPrecent(Answer) {
 
         //Get the precents
-        var Precent = GetPrecent($scope.WantedNumber, Answer);
+        var Precent = GetPrecent(gameState.getWantedNumber(), Answer);
 
-        var roundedPrecent = Math.round(Precent);
+        var roundedPrecent = Precent.toFixed(2);
 
-        $('#demo')[0].style.width = Precent + "%";
+        progressBar.changeWidth(Precent);
+
+
 
         if (Precent > 100) {
-            $('#demo')[0].className = progressBarOrang;
-            $('#demo')[0].style.width = 100 + "%";
-            $scope.ProgressBarText = "you are in the wrong way";
 
+          progressBar.changeToFailColor();
+          progressBar.changeWidth(100);
+          progressBar.changeText('you are in the wrong way');
         } else {
 
-            $scope.ProgressBarText = Precent + "%";
+          progressBar.changeText(roundedPrecent+'%');
         }
     }
 
-
-    function ProgressBarSuccess() {
-
-        $('#demo')[0].style.width = "100%";
-
-        $('#demo')[0].className = progressBarGreen;
-        $scope.ProgressBarText = "Great Work";
-    }
 
 
     var DotSecPressOccurred = true;
@@ -339,7 +331,8 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
     $scope.tryAgain = function() {
 
-        //If player have life left
+
+        // If player have life left
         if (takeLifes(1)) {
 
             var neededMoves = NeededMoves(gameState.getWantedNumber());
@@ -355,26 +348,101 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
     };
 
 
+    var progressBar = {
 
-   var gameState = {
-         changeLifesLeft : function(newLifes) {
+        elementId: 'progressBar',
+        element: {
+            id: 'progressBar',
+            getElement: function() {
+                return $('#' + this.id);
+            }
+        },
+
+        colors: {
+            defaultColorStyle: {
+                class: 'progress-bar-info'
+            },
+            colorStyleSuccess: {
+                class: 'progress-bar-success'
+            },
+            colorStyleFail: {
+                class: 'progress-bar-danger'
+            }
+        },
+
+        changeToSuccessColor: function() {
+
+            this.changeColor(this.colors.colorStyleSuccess);
+        },
+        changeToFailColor: function() {
+            this.changeColor(this.colors.colorStyleFail);
+        },
+        changeToDefaultColor: function() {
+            this.changeColor(this.colors.defaultColorStyle);
+        },
+
+        changeColor: function(color) {
+
+            // Take the dom element
+            var progressBar = $(this.element.getElement());
+
+            // If the progressBar dosent have the class already
+            // add the class
+            if (!progressBar.hasClass(color.class)) {
+                progressBar.addClass(color.class);
+            }
+
+            var colorsList = angular.copy(this.colors);
+
+            // If other colors classes exists remove them
+            angular.forEach(colorsList, function(value, key) {
+                if (value.class != color.class && progressBar.hasClass(value.class)) {
+                    progressBar.removeClass(value.class);
+                }
+            });
+
+        },
+
+        changeText: function(newText) {
+            $scope.ProgressBarText = newText;
+        },
+        changeWidth: function(precents) {
+            this.element.getElement()[0].style.width = precents+'%';
+        },
+        initProgressBar: function() {
+
+            // Clear the progressBar state
+            this.changeText('');
+            this.changeWidth(0);
+            this.changeToDefaultColor();
+        },
+        stageDone: function() {
+
+            this.changeText('Great Work');
+            this.changeWidth(100);
+            this.changeToSuccessColor();
+        }
+    };
+
+    var gameState = {
+        changeLifesLeft: function(newLifes) {
             $scope.LifesLeft = angular.copy(newLifes);
         },
-         changeLevel : function(newLevel) {
+        changeLevel: function(newLevel) {
             $scope.PlayerLvl = angular.copy(newLevel);
         },
-         changeMovesLeft : function(newMoves) {
+        changeMovesLeft: function(newMoves) {
             $scope.MovesLeft = angular.copy(newMoves);
         },
-         changeFullAnswer : function(newFullAnswer) {
+        changeFullAnswer: function(newFullAnswer) {
             $scope.FullAnswer = angular.copy(newFullAnswer);
         },
-         changeWantedNumber : function(newWantedNumber) {
+        changeWantedNumber: function(newWantedNumber) {
             $scope.WantedNumber = angular.copy(newWantedNumber);
         },
 
         // ChangeGameState change only the included parameters
-         changeGameState : function(playerLevel, wantedNumber, movesLeft, fullAnswer, lifes) {
+        changeGameState: function(playerLevel, wantedNumber, movesLeft, fullAnswer, lifes) {
 
             if (lifes) {
                 this.changeLifesLeft(lifes);
@@ -393,19 +461,19 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
             }
         },
 
-         getLifesLeft : function() {
+        getLifesLeft: function() {
             return angular.copy($scope.LifesLeft);
         },
-         getLevel : function() {
+        getLevel: function() {
             return angular.copy($scope.PlayerLvl);
         },
-         getMovesLeft : function() {
+        getMovesLeft: function() {
             return angular.copy($scope.MovesLeft);
         },
-         getFullAnswer : function() {
+        getFullAnswer: function() {
             return angular.copy($scope.FullAnswer);
         },
-         getWantedNumber : function() {
+        getWantedNumber: function() {
             return angular.copy($scope.WantedNumber);
         },
 
@@ -427,20 +495,16 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
         return false;
     }
 
-    function InitProgressBar() {
 
-        $scope.ProgressBarText = "";
-        $('#demo')[0].style.width = "0%";
-        $('#demo')[0].className = "progress-bar progress-bar-info progress-bar-success";
-    }
 
     // The initializer
     // initialize level and game common things
-    var commonInitializer = function () {
+    var commonInitializer = function() {
 
-      InitProgressBar();
+        progressBar.initProgressBar();
 
-      CharsList = [];
+
+        CharsList = [];
     }
 
     // When user start again the game
@@ -454,10 +518,10 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
         var defaultGameStates = ConstantsService.defaultGameState;
 
         gameState.changeGameState(defaultGameStates.playerLvl,
-          defaultGameStates.wantedNumber,
-          defaultGameStates.movesLeft,
-          defaultGameStates.fullAnswer,
-          defaultGameStates.lifes
+            defaultGameStates.wantedNumber,
+            defaultGameStates.movesLeft,
+            defaultGameStates.fullAnswer,
+            defaultGameStates.lifes
         );
     });
 
@@ -563,8 +627,14 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
         CalcNextLvl();
 
-        $scope.ClearData(false);
+        gameState.changeGameState(
+            null,
+            null,
+            null,
+            ConstantsService.defaultGameState.fullAnswer,
+            null);
 
+        commonInitializer();
     };
 
     function HideUnecessaryObjects() {
@@ -592,7 +662,8 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
     function nextLevelFeatures() {
 
-        ProgressBarSuccess();
+
+        progressBar.stageDone();
 
         $("#nxt").css("visibility", "visible").addClass("nextLvlStartBounce bounce arrow")
             .delay(780).queue(function() {
