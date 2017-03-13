@@ -15,7 +15,6 @@
         my Desc
     </description>
     <author email="Goorlavi1@gmail.com">
-        Apache Cordova Team
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -27,4 +26,5 @@
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="Fullscreen" value="true" />
 </widget>

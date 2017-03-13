@@ -10,5 +10,26 @@ MathItApp.service('ConstantsService', [function() {
         lifes: 3
     };
 
+    self.progressBar = {
+      colors : {
+          defaultColorStyle: {
+              class: 'progress-bar-info'
+          },
+          colorStyleSuccess: {
+              class: 'progress-bar-success'
+          },
+          colorStyleFail: {
+              class: 'progress-bar-danger'
+          }
+      },
+      width: {
+        default:'0%',
+        done:'100%'
+      },
+      text:{
+        default:''
+      }
+    }
+
 
 }]);
