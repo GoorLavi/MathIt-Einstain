@@ -71,18 +71,6 @@ MathItApp.service('GameStateService', ['ConstantsService', function(ConstantsSer
             return angular.copy(self.state.Answer);
         },
 
-        self.initialize = function() {
-            var defaultGameStates = ConstantsService.defaultGameState;
-
-            self.changeGameState(
-                defaultGameStates.playerLvl,
-                defaultGameStates.wantedNumber,
-                defaultGameStates.movesLeft,
-                defaultGameStates.fullAnswer,
-                defaultGameStates.lifes
-            );
-        },
-
         self.anyMovesLeft = function() {
 
             return self.getMovesLeft() > 0;

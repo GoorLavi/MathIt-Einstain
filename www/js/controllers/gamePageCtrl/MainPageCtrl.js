@@ -1,5 +1,5 @@
-MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService', 'ConstantsService', 'CalculationService', 'GameStateService', 'GameManagerService',
-    function($scope, $ionicModal, GeneralService, ConstantsService, CalculationService, GameStateService, GameManagerService) {
+MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService', 'ConstantsService', 'CalculationService', 'GameStateService', 'GameManagerService', '$ionicPopup',
+    function($scope, $ionicModal, GeneralService, ConstantsService, CalculationService, GameStateService, GameManagerService, $ionicPopup) {
 
 
 
@@ -9,7 +9,7 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
             // Init the bottom bar
             bottomBar.initialize();
 
-            GameStateService.initialize();
+            GameManagerService.initialize();
 
             $scope.gameState = GameStateService.state;
 
@@ -22,6 +22,17 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
 
 
+        $scope.LifeToMoves = function() {
+            var lifeToMovesPopup = $ionicPopup.confirm({
+                title: 'Life To Moves',
+                template: 'Switch 1 Life to 2 Moves?'
+            });
+            lifeToMovesPopup.then(function(res) {
+                if (res) {
+                    GameManagerService.lifeToMoves();
+                }
+            });
+        };
 
 
         bottomBar = {
@@ -57,13 +68,12 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
 
         $scope.$on('stageDone', function(event) {
-          nextLevelFeatures();
 
+            nextLevelFeatures();
         });
 
-
-
         $scope.gameButtonPressed = function(button) {
+
             GameManagerService.MainPress(button);
         }
 
@@ -93,43 +103,17 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
             }
         };
 
-
-
         $scope.tryAgain = function() {
 
-          GameManagerService.tryAgain();
+            GameManagerService.tryAgain();
         };
-
-
 
         // When user start again the game
         $scope.$on('initializeGame', function(event) {
 
             bottomBar.close();
-
         });
 
-
-        $scope.LifeToMoves = function() {
-
-            var Lifes = GameStateService.getLifesLeft();
-
-            // If there is lifes to exchange and user confirmed the conditions
-            if (Lifes > 0 && confirm("Switch 1 Life to 2 Moves?") === true) {
-
-                var movesLeft = GameStateService.getMovesLeft();
-
-                // Increase moves by 2
-                GameStateService.changeMovesLeft(movesLeft + 2);
-
-                // Decrease by 1
-                GameStateService.changeLifesLeft(Lifes - 1);
-
-                //vibrate
-                navigator.vibrate([150, 50, 150, 50, 300]);
-            } else
-                alert("Sorry no more lifes");
-        };
 
 
 
@@ -168,14 +152,10 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
             $("#WantedNum").removeClass('swashOut');
             $("#WantedNum").addClass('tinUpIn');
-
         }
 
 
         function nextLevelFeatures() {
-
-
-            //$scope.progressBar.stageDone();
 
             $("#nxt").css("visibility", "visible").addClass("nextLvlStartBounce bounce arrow")
                 .delay(780).queue(function() {
@@ -203,11 +183,7 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
             if (ThereIsConnection() && $scope.PlayerLvl % 5 === 0) {
                 createInterstitial();
             }
-
-
         }
 
-
         gameInit();
-    }
-]);
+    }]);

@@ -1,4 +1,4 @@
-MathItApp.controller('BottomBarCtrl', ['$scope', 'GeneralService','$rootScope','GameStateService', function($scope, GeneralService, $rootScope, GameStateService) {
+MathItApp.controller('BottomBarCtrl', ['$scope', 'GeneralService','$rootScope','GameStateService','GameManagerService', function($scope, GeneralService, $rootScope, GameStateService, GameManagerService) {
 
     function init() {
 
@@ -10,7 +10,7 @@ $scope.startOver= function () {
 
 $rootScope.$broadcast('initializeGame');
 
-GameStateService.initialize();
+GameManagerService.initialize();
 };
 
     init();

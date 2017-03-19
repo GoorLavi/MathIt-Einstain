@@ -1,5 +1,5 @@
-MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService', 'ProgressBarService', 'GeneralService', '$rootScope', 'ConstantsService',
-    function(GameStateService, CalculationService, ProgressBarService, GeneralService, $rootScope, ConstantsService) {
+MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService', 'ProgressBarService', 'GeneralService', '$rootScope', 'ConstantsService', 'NeededMovesService',
+    function(GameStateService, CalculationService, ProgressBarService, GeneralService, $rootScope, ConstantsService, NeededMovesService) {
 
         var self = this;
 
@@ -10,37 +10,68 @@ MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService
         var DotSecPressOccurred = true;
         var DotBool = false;
 
+        self.initialize = function() {
+                var defaultGameStates = ConstantsService.defaultGameState;
 
-        self.setNextStage = function() {
+                GameStateService.changeGameState(
+                    defaultGameStates.playerLvl,
+                    defaultGameStates.wantedNumber,
+                    defaultGameStates.movesLeft,
+                    defaultGameStates.fullAnswer,
+                    defaultGameStates.lifes
+                );
 
-            // If user finished the level without using
-            // all the moves
-            if (GameStateService.anyMovesLeft()) {
+                initializeStage();
+            },
+
+            self.setNextStage = function() {
+
+                // If user finished the level without using
+                // all the moves
+                if (GameStateService.anyMovesLeft()) {
+
+                    var movesLeft = GameStateService.getMovesLeft();
+
+                    IncreaseLifeBy(movesLeft / 2);
+                }
+
+                CalcNextLvl();
+
+                GameStateService.changeGameState(
+                    null,
+                    null,
+                    null,
+                    ConstantsService.defaultGameState.fullAnswer,
+                    null);
+
+                initializeStage();
+
+                $rootScope.$broadcast('setNextStage');
+            }
+
+
+        self.lifeToMoves = function() {
+
+            var Lifes = GameStateService.getLifesLeft();
+
+            // If there is lifes to exchange and user confirmed the conditions
+            if (Lifes > 0) {
 
                 var movesLeft = GameStateService.getMovesLeft();
 
-                IncreaseLifeBy(movesLeft / 2);
+                // Increase moves by 2
+                GameStateService.changeMovesLeft(movesLeft + 2);
+
+                // Decrease by 1
+                GameStateService.changeLifesLeft(Lifes - 1);
             }
-
-            CalcNextLvl();
-
-            GameStateService.changeGameState(
-                null,
-                null,
-                null,
-                ConstantsService.defaultGameState.fullAnswer,
-                null);
-
-            initializeStage();
-
-            $rootScope.$broadcast('setNextStage');
-        }
+        };
 
         self.tryAgain = function() {
             // If player have life left
             if (takeLifes(1)) {
 
-                var neededMoves = NeededMoves(GameStateService.getWantedNumber());
+                var neededMoves = NeededMovesService.calculateNeededMoves(GameStateService.getWantedNumber());
 
                 var fullAnswer = ConstantsService.defaultGameState.fullAnswer;
 
@@ -48,13 +79,18 @@ MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService
 
                 initializeStage();
 
+                return true;
             } else {
-                //Todo Ui to player no lifes
+                return false;
             }
         }
 
         var initializeStage = function() {
             CharsList = [];
+            ProgressBarService.initialize();
+
+            DotSecPressOccurred = true;
+            DotBool = false;
         }
 
         var PressAvailable = function(PressedButton) {
@@ -177,7 +213,7 @@ MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService
             var wantedNumber = GameStateService.getWantedNumber();
             NextWantedNumber = RandomWantedNumber(wantedNumber, (wantedNumber * 1.3 + RandomWantedNumber(1, 4))) + 2;
 
-            var NewMovesNumber = NeededMoves(NextWantedNumber);
+            var NewMovesNumber = NeededMovesService.calculateNeededMoves(NextWantedNumber);
             setStageData(NextWantedNumber, NewMovesNumber);
 
         }
@@ -186,18 +222,7 @@ MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
 
-        //take the number needed to achive and decide how mutch moves
-        var NeededMoves = function(Number) {
-            if (Number < 20) {
-                return 3;
-            } else if (Number < 100) {
-                return 5;
-            } else if (Number < 500) {
-                return 7;
-            } else {
-                return 9;
-            }
-        }
+
 
         // Decrement life by lifeToTake prop
         // return true is succeed
