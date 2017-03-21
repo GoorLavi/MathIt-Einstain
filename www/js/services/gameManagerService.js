@@ -32,7 +32,15 @@ MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService
 
                     var movesLeft = GameStateService.getMovesLeft();
 
+                    var x = movesLeft / 2 ;
                     IncreaseLifeBy(movesLeft / 2);
+
+                    if (x % 1 != 0 ) {
+
+                      console.log(movesLeft);
+                      console.log(x);
+
+                    }
                 }
 
                 CalcNextLvl();
@@ -130,7 +138,13 @@ MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService
                     if (DotSecPressOccurred) {
 
                         var currentMoves = GameStateService.getMovesLeft();
-                        GameStateService.changeMovesLeft(currentMoves - 1);
+                        if (PressedButton == '^2') {
+
+                          GameStateService.changeMovesLeft(currentMoves - 2);
+                        } else {
+
+                          GameStateService.changeMovesLeft(currentMoves - 1);
+                        }
                     }
 
                     CalculateResult(PressedButton);

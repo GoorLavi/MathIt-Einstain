@@ -1,5 +1,5 @@
-MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService', 'ConstantsService', 'CalculationService', 'GameStateService', 'GameManagerService', '$ionicPopup',
-    function($scope, $ionicModal, GeneralService, ConstantsService, CalculationService, GameStateService, GameManagerService, $ionicPopup) {
+MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService', 'ConstantsService', 'CalculationService', 'GameStateService', 'GameManagerService', '$ionicPopup', '$ionicLoading',
+    function($scope, $ionicModal, GeneralService, ConstantsService, CalculationService, GameStateService, GameManagerService, $ionicPopup, $ionicLoading) {
 
 
 
@@ -125,12 +125,28 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
 
         $scope.setNextStage = function() {
 
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 800,
+            });
+
+            var currentTime = Date.now();
+
             GameManagerService.setNextStage();
+
+            if (currentTime < (Date.now()) - 3000) {
+                $ionicLoading.hide();
+            } else {
+              setTimeout(function() {
+                $ionicLoading.hide();
+              },(currentTime - Date.now()) + 3000);
+            }
 
             HideUnecessaryObjects();
 
             VisibleNecessaryObjects();
-
         };
 
         function HideUnecessaryObjects() {
@@ -186,4 +202,5 @@ MathItApp.controller('MainPageCtrl', ['$scope', '$ionicModal', 'GeneralService',
         }
 
         gameInit();
-    }]);
+    }
+]);
