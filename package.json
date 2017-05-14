@@ -11,5 +11,8 @@
     "url": "c"
   },
   "author": "Goor Lavi",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.4"
+  }
 }
