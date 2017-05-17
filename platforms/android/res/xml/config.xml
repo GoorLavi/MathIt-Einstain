@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.example.MathIt" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.GoorL.MathIt" version="5.3.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
@@ -12,7 +12,9 @@
     </feature>
     <name>MathIt-Einstein</name>
     <description>
-        my Desc
+        A great math game that chalanged math skills and knowledge.
+	think you have what it takes?
+		lets see you einstien.
     </description>
     <author email="Goorlavi1@gmail.com">
     </author>
@@ -24,6 +26,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon src="platforms/android/res/mipmap-xhdpi/icon.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="Fullscreen" value="true" />

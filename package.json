@@ -1,0 +1,17 @@
+{
+    "name": "com.example.mathit",
+    "version": "5.3.2",
+    "displayName": "MathIt-Einstein",
+    "cordova": {
+        "platforms": [
+            "android"
+        ],
+        "plugins": {
+            "cordova-plugin-whitelist": {}
+        }
+    },
+    "dependencies": {
+        "cordova-android": "~6.0.0",
+        "cordova-plugin-whitelist": "1"
+    }
+}

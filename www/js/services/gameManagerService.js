@@ -218,7 +218,7 @@ MathItApp.service('GameManagerService', ['GameStateService', 'CalculationService
         var CalcNextLvl = function() {
 
             var wantedNumber = GameStateService.getWantedNumber();
-            nextWantedNumber = RandomWantedNumber(wantedNumber*1.6, wantedNumber*2.5);
+            nextWantedNumber = RandomWantedNumber(wantedNumber*1.3, wantedNumber*1.9);
 
             neededMoves = NeededMovesService.calculateNeededMoves(nextWantedNumber);
 
